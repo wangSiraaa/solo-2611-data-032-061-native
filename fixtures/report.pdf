@@ -1,0 +1,68 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 2 /Kids [5 0 R 7 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Length 648 >>
+stream
+BT /F1 11 Tf 40 800 Td (Synthetic expense report) Tj ET
+BT /F1 11 Tf 40 760 Td (Date) Tj ET
+BT /F1 11 Tf 155 760 Td (Description) Tj ET
+BT /F1 11 Tf 455 760 Td (Amount) Tj ET
+BT /F1 11 Tf 40 730 Td (2026-01-01) Tj ET
+BT /F1 11 Tf 155 730 Td (Office supplies batch 12) Tj ET
+BT /F1 11 Tf 455 730 Td (120.50) Tj ET
+BT /F1 11 Tf 40 700 Td (2026-01-02) Tj ET
+BT /F1 11 Tf 155 700 Td (Field visit on 2026-01-01) Tj ET
+BT /F1 11 Tf 455 700 Td (-15.00) Tj ET
+BT /F1 11 Tf 155 684 Td (includes route 42 materials) Tj ET
+BT /F1 11 Tf 40 100 Td (2026-01-03) Tj ET
+BT /F1 11 Tf 155 100 Td (Equipment maintenance and) Tj ET
+BT /F1 11 Tf 40 45 Td (Page 1) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 632 >>
+stream
+BT /F1 11 Tf 40 800 Td (Synthetic expense report) Tj ET
+BT /F1 11 Tf 40 760 Td (Date) Tj ET
+BT /F1 11 Tf 155 760 Td (Description) Tj ET
+BT /F1 11 Tf 455 760 Td (Amount) Tj ET
+BT /F1 11 Tf 155 730 Td (replacement components) Tj ET
+BT /F1 11 Tf 455 730 Td (210.25) Tj ET
+BT /F1 11 Tf 40 690 Td (2026-01-04) Tj ET
+BT /F1 11 Tf 155 690 Td (Travel claim 2026-01-03) Tj ET
+BT /F1 11 Tf 455 690 Td (55.00) Tj ET
+BT /F1 11 Tf 155 674 Td (two receipts 18 and 19) Tj ET
+BT /F1 11 Tf 40 625 Td (Table ends) Tj ET
+BT /F1 11 Tf 40 590 Td (Note: 2026-01-05 and 999.99 describe next cycle, not a detail.) Tj ET
+BT /F1 11 Tf 40 45 Td (Page 2) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000890 00000 n 
+0000001016 00000 n 
+0000001699 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+1825
+%%EOF
