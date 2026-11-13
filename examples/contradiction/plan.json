@@ -1,0 +1,42 @@
+{
+  "variables": {
+    "x1": {
+      "type": "continuous",
+      "range": [
+        0,
+        100
+      ]
+    },
+    "x2": {
+      "type": "continuous",
+      "range": [
+        0,
+        100
+      ]
+    },
+    "outcome": {
+      "type": "continuous",
+      "range": [
+        -100,
+        200
+      ]
+    }
+  },
+  "allowed_predictors": [
+    "x1",
+    "x2",
+    "outcome"
+  ],
+  "analysis": {
+    "response": "outcome",
+    "covariates": [
+      "x1",
+      "x2"
+    ],
+    "intercept": true,
+    "structural_inapplicable_policy": "exclude affected rows from this analysis"
+  },
+  "completed_datasets": 4,
+  "iterations": 8,
+  "seed": 5
+}
