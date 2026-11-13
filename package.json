@@ -1,0 +1,11 @@
+{
+  "name": "analyticdesk-verify",
+  "private": true,
+  "description": "浏览器端到端核验所用的 Playwright 依赖（应用本身无需 Node）",
+  "scripts": {
+    "verify:ui": "node tests/ui_verify.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.65.0"
+  }
+}

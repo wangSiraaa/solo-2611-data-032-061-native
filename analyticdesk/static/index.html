@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>小型联动分析台</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>小型联动分析台</h1>
+      <p class="sub">地区 / 类别 / 日期联动筛选 · 金额为整数分 · 日期区间为 [起始, 结束)</p>
+    </div>
+    <div class="state-global" id="global-state">
+      <span class="state-label">当前筛选状态</span>
+      <code id="state-id">—</code>
+      <span class="fingerprint" id="state-fp"></span>
+      <span class="pending-indicator" id="global-pending" hidden>请求中…</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="filters panel" aria-label="筛选">
+      <div class="filter-row">
+        <fieldset>
+          <legend>日期（左闭右开）</legend>
+          <label>起始日（含）<input type="date" id="date-from" /></label>
+          <label>结束日（不含）<input type="date" id="date-to" /></label>
+          <p class="hint" id="date-hint"></p>
+        </fieldset>
+      </div>
+      <div class="filter-row dims">
+        <fieldset>
+          <legend>地区（同维度取并集，不选 = 全部）</legend>
+          <div class="checks" id="region-checks"></div>
+        </fieldset>
+        <fieldset>
+          <legend>类别（同维度取并集，不选 = 全部）</legend>
+          <div class="checks" id="category-checks"></div>
+        </fieldset>
+      </div>
+      <div class="filter-actions">
+        <button id="undo-btn" type="button" disabled>撤销上次筛选</button>
+        <button id="drill-return-btn" type="button" hidden>返回钻取前筛选</button>
+        <button id="reset-btn" type="button">重置</button>
+      </div>
+      <div class="fault-controls">
+        <strong>乱序 / 故障复现</strong>
+        <label>下一请求延迟
+          <input type="number" id="delay-ms" min="0" max="30000" step="100" value="0" />
+          <span class="hint-inline">ms，仅作用于下一次刷新，用后清零</span>
+        </label>
+        <fieldset class="fail-set">
+          <legend>下一刷新注入失败部件（可多选，用后清零）</legend>
+          <label><input type="checkbox" name="fail" value="metrics" />指标</label>
+          <label><input type="checkbox" name="fail" value="trend" />趋势</label>
+          <label><input type="checkbox" name="fail" value="category_distribution" />类别分布</label>
+          <label><input type="checkbox" name="fail" value="category_candidates" />类别候选</label>
+          <label><input type="checkbox" name="fail" value="detail" />明细</label>
+          <label><input type="checkbox" name="fail" value="all" />整页</label>
+        </fieldset>
+        <button id="refresh-btn" type="button">按当前筛选重新请求</button>
+      </div>
+    </section>
+
+    <section class="metrics-row">
+      <div class="panel metric" data-panel="metrics">
+        <div class="panel-head">
+          <h2>金额指标</h2><span class="state-chip" data-chip>—</span>
+        </div>
+        <div class="metric-body">
+          <div class="metric-main" data-field="amount_cents">—</div>
+          <div class="metric-sub">整数分</div>
+          <div class="metric-main small" data-field="amount_display">—</div>
+        </div>
+        <div class="panel-overlay" data-overlay hidden></div>
+      </div>
+      <div class="panel metric" data-panel="metrics-count">
+        <div class="panel-head">
+          <h2>条数指标</h2><span class="state-chip" data-chip>—</span>
+        </div>
+        <div class="metric-body">
+          <div class="metric-main" data-field="row_count">—</div>
+          <div class="metric-sub">命中记录数</div>
+        </div>
+        <div class="panel-overlay" data-overlay hidden></div>
+      </div>
+      <div class="panel metric metric-note">
+        <div class="panel-head"><h2>口径说明</h2></div>
+        <ul class="notes">
+          <li>主指标 / 趋势 / 明细：<b>完整筛选</b></li>
+          <li>类别分布：<b>完整筛选</b>（含类别自身筛选）</li>
+          <li>类别候选：<b>移除类别自身筛选</b>，用于继续增加类别</li>
+          <li>同维度并集，不同维度交集；NULL 与空字符串分别选择</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="charts-row">
+      <div class="panel chart-panel" data-panel="category_distribution">
+        <div class="panel-head">
+          <h2>类别柱状图 · 当前筛选分布</h2><span class="state-chip" data-chip>—</span>
+        </div>
+        <p class="scope">口径：完整筛选（含类别自身筛选）。点击柱子 = 钻取到该类别明细。</p>
+        <div class="chart" data-chart></div>
+        <div class="panel-overlay" data-overlay hidden></div>
+      </div>
+      <div class="panel chart-panel" data-panel="category_candidates">
+        <div class="panel-head">
+          <h2>类别柱状图 · 候选分布</h2><span class="state-chip" data-chip>—</span>
+        </div>
+        <p class="scope">口径：移除类别自身筛选后的候选分布。点击柱子 = 增加该类别。</p>
+        <div class="chart" data-chart></div>
+        <div class="panel-overlay" data-overlay hidden></div>
+      </div>
+    </section>
+
+    <section class="panel chart-panel wide" data-panel="trend">
+      <div class="panel-head">
+        <h2>按日趋势</h2><span class="state-chip" data-chip>—</span>
+      </div>
+      <p class="scope">口径：完整筛选，按日补零。点击某天 = 钻取到该日明细。</p>
+      <div class="chart" data-chart></div>
+      <div class="panel-overlay" data-overlay hidden></div>
+    </section>
+
+    <section class="panel detail-panel" data-panel="detail">
+      <div class="panel-head">
+        <h2>明细</h2><span class="state-chip" data-chip>—</span>
+        <span class="sort-note" id="sort-note"></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>记录号</th><th>日期</th><th>地区</th><th>类别</th>
+              <th class="num">数量</th><th class="num">金额（整数分）</th>
+            </tr>
+          </thead>
+          <tbody id="detail-body"></tbody>
+        </table>
+      </div>
+      <div class="pager">
+        <button id="prev-page" type="button">上一页</button>
+        <span id="page-info">—</span>
+        <button id="next-page" type="button">下一页</button>
+        <label>每页
+          <select id="page-size">
+            <option value="10">10</option>
+            <option value="20" selected>20</option>
+            <option value="50">50</option>
+          </select>
+        </label>
+      </div>
+      <div class="panel-overlay" data-overlay hidden></div>
+    </section>
+
+    <section class="panel request-log-panel">
+      <div class="panel-head"><h2>请求与状态核对</h2></div>
+      <table class="log-table">
+        <thead><tr><th>#</th><th>发起</th><th>筛选状态</th><th>页面</th><th>延迟</th><th>结果</th><th>完成</th></tr></thead>
+        <tbody id="request-log"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <template id="check-template">
+    <label class="check"><input type="checkbox" /><span class="check-label"></span><span class="check-count"></span></label>
+  </template>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
