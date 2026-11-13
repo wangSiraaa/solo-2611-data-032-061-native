@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-computed precision boundary for Total = PartA + PartB (all decimals=0,
+     so each value v represents [v-0.5, v+0.5]).
+
+  Q1: Total 101.5 -> [101.0, 102.0]
+      PartA 50    -> [ 49.5,  50.5]
+      PartB 50    -> [ 49.5,  50.5]
+      child sum   -> [ 99.0, 101.0]
+      parent - sum-> [101.0-101.0, 102.0-99.0] = [0, 3]  -> contains 0 -> consistent
+      (the boundary touches exactly at 0)
+
+  Q2: Total 102.5 -> [102.0, 103.0]
+      children unchanged: sum [99.0, 101.0]
+      parent - sum-> [102.0-101.0, 103.0-99.0] = [1, 4]  -> excludes 0 -> inconsistent
+      (moving the parent by 1 moves the lower bound from 0 to 1)
+-->
+<xbrli:xbrl xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:ex="urn:example:facts:v1">
+ <link:schemaRef xlink:type="simple" xlink:href="taxonomy/example.xsd"/>
+ <xbrli:context id="q1"><xbrli:entity><xbrli:identifier scheme="urn:example:entity">E-42</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startDate>2025-01-01</xbrli:startDate><xbrli:endDate>2025-03-31</xbrli:endDate></xbrli:period></xbrli:context>
+ <xbrli:context id="q2"><xbrli:entity><xbrli:identifier scheme="urn:example:entity">E-42</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startDate>2025-04-01</xbrli:startDate><xbrli:endDate>2025-06-30</xbrli:endDate></xbrli:period></xbrli:context>
+ <xbrli:unit id="CNY"><xbrli:measure>iso4217:CNY</xbrli:measure></xbrli:unit>
+ <ex:Total contextRef="q1" unitRef="CNY" decimals="0">101.5</ex:Total>
+ <ex:PartA contextRef="q1" unitRef="CNY" decimals="0">50</ex:PartA>
+ <ex:PartB contextRef="q1" unitRef="CNY" decimals="0">50</ex:PartB>
+ <ex:Total contextRef="q2" unitRef="CNY" decimals="0">102.5</ex:Total>
+ <ex:PartA contextRef="q2" unitRef="CNY" decimals="0">50</ex:PartA>
+ <ex:PartB contextRef="q2" unitRef="CNY" decimals="0">50</ex:PartB>
+</xbrli:xbrl>

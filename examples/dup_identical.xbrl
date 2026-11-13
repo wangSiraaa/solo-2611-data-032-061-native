@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Same value reported twice for the same concept/context/unit.
+     Both are kept; the group is 'identical' and is counted once. -->
+<xbrli:xbrl xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:ex="urn:example:facts:v1">
+ <link:schemaRef xlink:type="simple" xlink:href="taxonomy/example.xsd"/>
+ <xbrli:context id="q1"><xbrli:entity><xbrli:identifier scheme="urn:example:entity">E-42</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startDate>2025-01-01</xbrli:startDate><xbrli:endDate>2025-03-31</xbrli:endDate></xbrli:period></xbrli:context>
+ <xbrli:unit id="CNY"><xbrli:measure>iso4217:CNY</xbrli:measure></xbrli:unit>
+ <ex:Total contextRef="q1" unitRef="CNY" decimals="0">1000</ex:Total>
+ <ex:PartA contextRef="q1" unitRef="CNY" decimals="0">400</ex:PartA>
+ <ex:PartA contextRef="q1" unitRef="CNY" decimals="0">400</ex:PartA>
+ <ex:PartB contextRef="q1" unitRef="CNY" decimals="0">600</ex:PartB>
+</xbrli:xbrl>

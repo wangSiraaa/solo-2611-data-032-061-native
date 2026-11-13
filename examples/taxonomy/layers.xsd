@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:xbrldt="http://xbrl.org/2005/xbrldt" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ex="urn:example:layers:v1" targetNamespace="urn:example:layers:v1" elementFormDefault="qualified">
+ <xs:import namespace="http://www.xbrl.org/2003/instance" schemaLocation="xbrli-min.xsd"/>
+ <xs:import namespace="http://xbrl.org/2005/xbrldt" schemaLocation="xbrldt-min.xsd"/>
+ <xs:annotation><xs:appinfo><link:linkbaseRef xlink:type="simple" xlink:href="layers-calculation.xml" xlink:arcrole="http://www.w3.org/1999/xlink/properties/linkbase" xlink:role="http://www.xbrl.org/2003/role/calculationLinkbaseRef"/></xs:appinfo></xs:annotation>
+ <!-- two-level tree: Grand = SubA + SubB ; SubA = Leaf1 + Leaf2 -->
+ <xs:element id="Grand" name="Grand" type="xbrli:monetaryItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" nillable="true"/>
+ <xs:element id="SubA" name="SubA" type="xbrli:monetaryItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" nillable="true"/>
+ <xs:element id="SubB" name="SubB" type="xbrli:monetaryItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" nillable="true"/>
+ <xs:element id="Leaf1" name="Leaf1" type="xbrli:monetaryItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" nillable="true"/>
+ <xs:element id="Leaf2" name="Leaf2" type="xbrli:monetaryItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" nillable="true"/>
+</xs:schema>

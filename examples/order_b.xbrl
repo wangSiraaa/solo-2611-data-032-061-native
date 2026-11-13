@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Same facts as order_a.xbrl: different context id, different prefix,
+     dimensions listed in the opposite order, facts in a different XML order. -->
+<xbrli:xbrl xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:q="urn:example:facts:v1">
+ <link:schemaRef xlink:type="simple" xlink:href="taxonomy/example.xsd"/>
+ <xbrli:context id="quarter-one">
+  <xbrli:entity>
+   <xbrli:identifier scheme="urn:example:entity">E-42</xbrli:identifier>
+   <xbrli:segment>
+    <xbrldi:explicitMember dimension="q:ChannelAxis">q:Online</xbrldi:explicitMember>
+    <xbrldi:explicitMember dimension="q:RegionAxis">q:North</xbrldi:explicitMember>
+   </xbrli:segment>
+  </xbrli:entity>
+  <xbrli:period><xbrli:startDate>2025-01-01</xbrli:startDate><xbrli:endDate>2025-03-31</xbrli:endDate></xbrli:period>
+ </xbrli:context>
+ <xbrli:unit id="u-cny"><xbrli:measure>iso4217:CNY</xbrli:measure></xbrli:unit>
+ <xbrli:unit id="u-pure"><xbrli:measure>xbrli:pure</xbrli:measure></xbrli:unit>
+ <q:PartA contextRef="quarter-one" unitRef="u-cny" decimals="0">400</q:PartA>
+ <q:Total contextRef="quarter-one" unitRef="u-cny" decimals="0">1000</q:Total>
+ <q:PartB contextRef="quarter-one" unitRef="u-cny" decimals="0">600</q:PartB>
+ <q:Ratio contextRef="quarter-one" unitRef="u-pure" decimals="2">0.25</q:Ratio>
+</xbrli:xbrl>

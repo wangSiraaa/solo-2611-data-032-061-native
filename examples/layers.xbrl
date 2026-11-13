@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Multi-level calculation: each level is reported separately.
+       Grand = SubA + SubB   (level 1: consistent)
+       SubA  = Leaf1 + Leaf2 (level 2: deliberately inconsistent)
+     A leaf-level error must not be hidden by the aggregate being fine. -->
+<xbrli:xbrl xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:ex="urn:example:layers:v1">
+ <link:schemaRef xlink:type="simple" xlink:href="taxonomy/layers.xsd"/>
+ <xbrli:context id="q1"><xbrli:entity><xbrli:identifier scheme="urn:example:entity">E-42</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startDate>2025-01-01</xbrli:startDate><xbrli:endDate>2025-03-31</xbrli:endDate></xbrli:period></xbrli:context>
+ <xbrli:unit id="CNY"><xbrli:measure>iso4217:CNY</xbrli:measure></xbrli:unit>
+ <ex:Grand contextRef="q1" unitRef="CNY" decimals="0">1000</ex:Grand>
+ <ex:SubA contextRef="q1" unitRef="CNY" decimals="0">300</ex:SubA>
+ <ex:SubB contextRef="q1" unitRef="CNY" decimals="0">700</ex:SubB>
+ <ex:Leaf1 contextRef="q1" unitRef="CNY" decimals="0">100</ex:Leaf1>
+ <ex:Leaf2 contextRef="q1" unitRef="CNY" decimals="0">250</ex:Leaf2>
+</xbrli:xbrl>

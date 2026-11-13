@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:xbrldt="http://xbrl.org/2005/xbrldt" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ex="urn:example:facts:v1" targetNamespace="urn:example:facts:v1" elementFormDefault="qualified">
+ <xs:import namespace="http://www.xbrl.org/2003/instance" schemaLocation="xbrli-min.xsd"/>
+ <xs:import namespace="http://xbrl.org/2005/xbrldt" schemaLocation="xbrldt-min.xsd"/>
+ <xs:annotation><xs:appinfo><link:linkbaseRef xlink:type="simple" xlink:href="calculation.xml" xlink:arcrole="http://www.w3.org/1999/xlink/properties/linkbase" xlink:role="http://www.xbrl.org/2003/role/calculationLinkbaseRef"/></xs:appinfo></xs:annotation>
+ <!-- duration monetary items, computed by calculation.xml: Total = A + B -->
+ <xs:element id="Total" name="Total" type="xbrli:monetaryItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" nillable="true"/>
+ <xs:element id="PartA" name="PartA" type="xbrli:monetaryItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" nillable="true"/>
+ <xs:element id="PartB" name="PartB" type="xbrli:monetaryItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" nillable="true"/>
+ <xs:element id="PartC" name="PartC" type="xbrli:monetaryItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" nillable="true"/>
+ <!-- instant item, to exercise period-type matching -->
+ <xs:element id="Balance" name="Balance" type="xbrli:monetaryItemType" substitutionGroup="xbrli:item" xbrli:periodType="instant" nillable="true"/>
+ <!-- plain decimal item (non-monetary) -->
+ <xs:element id="Ratio" name="Ratio" type="xbrli:decimalItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" nillable="true"/>
+ <!-- explicit dimensions -->
+ <xs:element id="RegionAxis" name="RegionAxis" type="xbrli:stringItemType" substitutionGroup="xbrldt:dimensionItem" xbrli:periodType="duration" abstract="true"/>
+ <xs:element id="ChannelAxis" name="ChannelAxis" type="xbrli:stringItemType" substitutionGroup="xbrldt:dimensionItem" xbrli:periodType="duration" abstract="true"/>
+ <xs:element id="North" name="North" type="xbrli:stringItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" abstract="true"/>
+ <xs:element id="South" name="South" type="xbrli:stringItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" abstract="true"/>
+ <xs:element id="Online" name="Online" type="xbrli:stringItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" abstract="true"/>
+ <xs:element id="Offline" name="Offline" type="xbrli:stringItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" abstract="true"/>
+ <!-- tuple: present so a fixture can show it being rejected -->
+ <xs:element id="Note" name="Note" type="xbrli:stringItemType" substitutionGroup="xbrli:tuple" xbrli:periodType="duration" abstract="true"/>
+ <xs:element id="NoteText" name="NoteText" type="xbrli:stringItemType" substitutionGroup="xbrli:item" xbrli:periodType="duration" nillable="true"/>
+</xs:schema>

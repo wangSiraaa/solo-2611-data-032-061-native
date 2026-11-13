@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Constructs outside the supported subset, each rejected explicitly:
+     tuple, typed dimension, divide unit, precision attribute, unknown concept,
+     period-type mismatch, forever period, and a nil with a value. -->
+<xbrli:xbrl xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:ex="urn:example:facts:v1">
+ <link:schemaRef xlink:type="simple" xlink:href="taxonomy/example.xsd"/>
+ <xbrli:context id="q1"><xbrli:entity><xbrli:identifier scheme="urn:example:entity">E-42</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startDate>2025-01-01</xbrli:startDate><xbrli:endDate>2025-03-31</xbrli:endDate></xbrli:period></xbrli:context>
+ <xbrli:context id="instant1"><xbrli:entity><xbrli:identifier scheme="urn:example:entity">E-42</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:instant>2025-03-31</xbrli:instant></xbrli:period></xbrli:context>
+ <xbrli:context id="typed"><xbrli:entity><xbrli:identifier scheme="urn:example:entity">E-42</xbrli:identifier><xbrli:segment><xbrldi:typedMember dimension="ex:RegionAxis"><ex:North>north</ex:North></xbrldi:typedMember></xbrli:segment></xbrli:entity><xbrli:period><xbrli:startDate>2025-01-01</xbrli:startDate><xbrli:endDate>2025-03-31</xbrli:endDate></xbrli:period></xbrli:context>
+ <xbrli:unit id="CNY"><xbrli:measure>iso4217:CNY</xbrli:measure></xbrli:unit>
+ <xbrli:unit id="ratio"><xbrli:divide><xbrli:unitNumerator><xbrli:measure>iso4217:CNY</xbrli:measure></xbrli:unitNumerator><xbrli:unitDenominator><xbrli:measure>iso4217:USD</xbrli:measure></xbrli:unitDenominator></xbrli:divide></xbrli:unit>
+ <ex:Total contextRef="q1" unitRef="CNY" decimals="0">1000</ex:Total>
+ <ex:Note><ex:NoteText>a tuple is not supported</ex:NoteText></ex:Note>
+ <ex:PartA contextRef="typed" unitRef="CNY" decimals="0">1</ex:PartA>
+ <ex:PartB contextRef="q1" unitRef="ratio" decimals="0">1</ex:PartB>
+ <ex:PartC contextRef="q1" unitRef="CNY" precision="6">1</ex:PartC>
+ <ex:Unknown contextRef="q1" unitRef="CNY" decimals="0">1</ex:Unknown>
+ <ex:Balance contextRef="q1" unitRef="CNY" decimals="0">1</ex:Balance>
+ <ex:PartA contextRef="instant1" unitRef="CNY" decimals="0">2</ex:PartA>
+ <ex:PartB contextRef="q1" unitRef="CNY" decimals="0" xsi:nil="true">7</ex:PartB>
+</xbrli:xbrl>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Exotic prefixes, non-obvious context ids, dimensions in reverse order.
+     Functionally identical to order_b.xbrl. -->
+<xbrli:xbrl xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:zz="urn:example:facts:v1">
+ <link:schemaRef xlink:type="simple" xlink:href="taxonomy/example.xsd"/>
+ <xbrli:context id="c-009">
+  <xbrli:entity><xbrli:identifier scheme="urn:example:entity">E-42</xbrli:identifier>
+   <xbrli:segment>
+    <xbrldi:explicitMember dimension="zz:RegionAxis">zz:North</xbrldi:explicitMember>
+    <xbrldi:explicitMember dimension="zz:ChannelAxis">zz:Online</xbrldi:explicitMember>
+   </xbrli:segment>
+  </xbrli:entity>
+  <xbrli:period><xbrli:startDate>2025-01-01</xbrli:startDate><xbrli:endDate>2025-03-31</xbrli:endDate></xbrli:period>
+ </xbrli:context>
+ <xbrli:unit id="u-cny"><xbrli:measure>iso4217:CNY</xbrli:measure></xbrli:unit>
+ <xbrli:unit id="u-pure"><xbrli:measure>xbrli:pure</xbrli:measure></xbrli:unit>
+ <zz:PartB contextRef="c-009" unitRef="u-cny" decimals="0">600</zz:PartB>
+ <zz:Total contextRef="c-009" unitRef="u-cny" decimals="0">1000</zz:Total>
+ <zz:PartA contextRef="c-009" unitRef="u-cny" decimals="0">400</zz:PartA>
+ <zz:Ratio contextRef="c-009" unitRef="u-pure" decimals="2">0.25</zz:Ratio>
+</xbrli:xbrl>

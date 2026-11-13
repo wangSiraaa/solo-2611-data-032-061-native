@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<link:linkbase xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <link:calculationLink xlink:type="extended" xlink:role="http://www.xbrl.org/2003/role/link">
+  <link:loc xlink:type="locator" xlink:href="layers.xsd#Grand" xlink:label="Grand"/>
+  <link:loc xlink:type="locator" xlink:href="layers.xsd#SubA" xlink:label="SubA"/>
+  <link:loc xlink:type="locator" xlink:href="layers.xsd#SubB" xlink:label="SubB"/>
+  <link:loc xlink:type="locator" xlink:href="layers.xsd#Leaf1" xlink:label="Leaf1"/>
+  <link:loc xlink:type="locator" xlink:href="layers.xsd#Leaf2" xlink:label="Leaf2"/>
+  <link:calculationArc xlink:type="arc" xlink:arcrole="http://www.xbrl.org/2003/arcrole/summation-item" xlink:from="Grand" xlink:to="SubA" order="1" weight="1"/>
+  <link:calculationArc xlink:type="arc" xlink:arcrole="http://www.xbrl.org/2003/arcrole/summation-item" xlink:from="Grand" xlink:to="SubB" order="2" weight="1"/>
+  <link:calculationArc xlink:type="arc" xlink:arcrole="http://www.xbrl.org/2003/arcrole/summation-item" xlink:from="SubA" xlink:to="Leaf1" order="1" weight="1"/>
+  <link:calculationArc xlink:type="arc" xlink:arcrole="http://www.xbrl.org/2003/arcrole/summation-item" xlink:from="SubA" xlink:to="Leaf2" order="2" weight="1"/>
+ </link:calculationLink>
+</link:linkbase>
