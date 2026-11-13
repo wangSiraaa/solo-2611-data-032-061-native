@@ -1,0 +1,16 @@
+{
+  "character_encoding": "cp037",
+  "record_prefix": {
+    "bytes": 4,
+    "byte_order": "big",
+    "includes_prefix": true
+  },
+  "packed_decimal": {
+    "positive_signs": [
+      "C",
+      "F"
+    ],
+    "negative_sign": "D"
+  },
+  "max_record_bytes": 4096
+}
