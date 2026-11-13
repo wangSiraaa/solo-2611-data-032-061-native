@@ -1,0 +1,20 @@
+{
+  "source": "Real PostgreSQL EXPLAIN ANALYZE captured from isolated synthetic database",
+  "postgres_version": "PostgreSQL 16.16 (Debian 16.16-1.pgdg12+1) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit",
+  "captured_at": "2026-11-13T15:56:27.063592+00:00",
+  "seed": "deterministic generate_series, no random input",
+  "sql": "SELECT c.region, p.region AS parent_region, count(*) AS n, sum(o.amount) AS amount\nFROM customers c JOIN customers p ON p.id=c.parent_id JOIN orders o ON o.customer_id=c.id\nWHERE c.region IN ('north','east') AND o.amount>200\nGROUP BY c.region,p.region ORDER BY c.region,p.region;",
+  "sql_sha256": "4ba802827edac7212557d014f97d8f46b608a92e93298543547599bc3cfd4d18",
+  "parameters": {},
+  "data_snapshot": "a034677a8e8453dcaa4e78c0fc8b1725369faf8af334b6d4bdacc7a378252b91",
+  "before": {
+    "file": "before.json",
+    "settings_sql": "SET max_parallel_workers_per_gather=0; SET jit=off; SET enable_nestloop=off; SET enable_mergejoin=off; SET enable_hashjoin=on; SET enable_hashagg=on;"
+  },
+  "after": {
+    "file": "after.json",
+    "settings_sql": "SET max_parallel_workers_per_gather=0; SET jit=off; SET enable_nestloop=on; SET enable_mergejoin=off; SET enable_hashjoin=off; SET enable_hashagg=off;"
+  },
+  "reproduction": "make_plans.sql",
+  "timing_note": "Single small local run; not a statistically supported performance benchmark. Settings intentionally differ to produce plan structure changes."
+}
