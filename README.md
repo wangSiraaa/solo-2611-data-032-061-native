@@ -10,3 +10,8 @@
 - Python 标准库包含 SQLite；根据题目选择实际需要的技术。
 
 原生环境初始化示例见 [environment/README.md](environment/README.md)。请将依赖、数据库、运行日志及临时验证数据放在忽略目录中，并为最终实现提供清楚的运行说明。
+
+## 本次实现
+
+离线流重组器：`reasm.py`（generate / assemble / inspect / verify），端到端测试
+`run_tests.py`，完整设计与运行说明见 [README.reasm.md](README.reasm.md)。
