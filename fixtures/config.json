@@ -1,0 +1,5 @@
+{
+  "max_clip_seconds": "3.0",
+  "merge_silence_seconds": "0.25",
+  "context_seconds": "0.10"
+}

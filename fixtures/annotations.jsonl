@@ -1,0 +1,7 @@
+{"recording": "session-a.wav", "annotation_id": "a1", "speaker": "s1", "start": "0.10003", "end": "1.50001"}
+{"recording": "session-a.wav", "annotation_id": "a2", "speaker": "s2", "start": "1.20000", "end": "2.20000"}
+{"recording": "session-a.wav", "annotation_id": "a3", "speaker": "s1", "start": "2.25000", "end": "7.70003"}
+{"recording": "session-a.wav", "annotation_id": "a4", "speaker": "s2", "start": "7.80000", "end": "9.00000"}
+{"recording": "session-b.wav", "annotation_id": "b1", "speaker": "s3", "start": "0", "end": "1.2"}
+{"recording": "session-b.wav", "annotation_id": "b2", "speaker": "s3", "start": "3.7", "end": "5"}
+{"recording": "session-b.wav", "annotation_id": "bad-range", "speaker": "s3", "start": "4.5", "end": "5.2"}
