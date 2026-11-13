@@ -6,6 +6,8 @@ venv/
 .env.*
 !.env.example
 .runtime/
+out/
+fixtures/extra/
 .pytest_cache/
 .coverage
 htmlcov/
