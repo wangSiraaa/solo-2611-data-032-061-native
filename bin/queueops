@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Thin launcher so all commands run without activating the venv.
+set -euo pipefail
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$here"
+if [[ -x ".venv/bin/python" ]]; then
+  exec .venv/bin/python -m queueops "$@"
+else
+  exec python3 -m queueops "$@"
+fi

@@ -11,3 +11,8 @@ venv/
 htmlcov/
 .DS_Store
 *.log
+
+# generated datasets and run artifacts
+data/
+data_*/
+runtime_out/
