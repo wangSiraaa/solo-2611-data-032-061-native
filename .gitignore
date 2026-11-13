@@ -11,3 +11,11 @@ venv/
 htmlcov/
 .DS_Store
 *.log
+
+# Generated analysis artifacts (regenerable via the CLI)
+demo/
+runs/
+simulations/
+bad_inputs/
+deworkbench.egg-info/
+*.egg-info/
