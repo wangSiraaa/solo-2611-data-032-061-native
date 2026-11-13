@@ -1,0 +1,6 @@
+station_id,lat,lon
+inside,30.5,110.5
+line,31,111
+corner,33,114
+missing_neighbour,31.3,112.4
+outside,34,111
