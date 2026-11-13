@@ -1,0 +1,8 @@
+{
+  "columns": [
+    {"name": "b", "values": [null, 1]},
+    {"name": "a", "values": [2, 1]}
+  ],
+  "predicate_a": "a = 1",
+  "predicate_b": "b = 1"
+}

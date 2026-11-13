@@ -1,0 +1,8 @@
+{
+  "columns": [
+    {"name": "x", "values": [null, 0, 1]},
+    {"name": "y", "values": [null, 0, 1]}
+  ],
+  "predicate_a": "NOT x = 1 OR y = 1",
+  "predicate_b": "(NOT (x = 1)) OR (y = 1)"
+}

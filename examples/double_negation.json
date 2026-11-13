@@ -1,0 +1,7 @@
+{
+  "columns": [
+    {"name": "x", "values": [null, 1]}
+  ],
+  "predicate_a": "x = 1 OR x IS NULL",
+  "predicate_b": "NOT (NOT (x = 1 OR x IS NULL))"
+}

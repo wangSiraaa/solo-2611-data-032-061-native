@@ -1,0 +1,7 @@
+{
+  "columns": [
+    {"name": "x", "values": [null, 1, 2]}
+  ],
+  "predicate_a": "x NOT IN (1, NULL)",
+  "predicate_b": "x NOT IN (1, 2)"
+}
