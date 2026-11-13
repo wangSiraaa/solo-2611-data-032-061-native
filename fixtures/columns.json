@@ -1,0 +1,12 @@
+{
+  "null_marker": "\\N",
+  "empty_string_is_value": true,
+  "amount_unit": "integer cents",
+  "date_format": "YYYY-MM-DD",
+  "date_range": "left_closed_right_open",
+  "unique_key": "record_id",
+  "default_sort": [
+    "business_date",
+    "record_id"
+  ]
+}
