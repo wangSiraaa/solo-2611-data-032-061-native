@@ -1,0 +1,2 @@
+# TraceRelay 仅使用 Python 3.11 标准库与内置 SQLite，无第三方 pip 依赖。
+# 如未来引入依赖，请在此固定版本；当前安装后无需执行 pip install。

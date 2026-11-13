@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>TraceRelay · 离线追踪复盘</title>
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<header>
+  <strong>TraceRelay</strong>
+  <span class="muted">合成追踪离线复盘 · 墙钟口径（非 CPU）· 覆盖账本与资源账本分别守恒</span>
+  <span id="health" class="badge"></span>
+</header>
+<div id="layout">
+  <aside id="sidebar">
+    <div class="filters">
+      <input id="q" placeholder="筛选 trace / 请求类型">
+      <label><input type="checkbox" id="f-complete"> 仅完整追踪</label>
+      <label><input type="checkbox" id="f-gaps"> 仅有缺口追踪</label>
+      <button id="btn-report">批量报告</button>
+    </div>
+    <div id="trace-list" class="list"></div>
+    <div id="pager" class="pager"></div>
+  </aside>
+  <main id="main">
+    <div id="welcome" class="card">
+      <h2>归因模型速览</h2>
+      <p>选中左侧 trace 查看并行泳道、RPC 双方、await 解除关系与关键证据。</p>
+      <ul>
+        <li><b>覆盖账本</b>：根窗口被切成 self / await / queue / gap 四类互斥时间片，总和恒等于根窗口；并行等待按实际时间覆盖，重叠不重复计。</li>
+        <li><b>资源账本</b>：各服务执行/排队/等待的墙钟并集，允许并行累加，不要求等于根窗口。</li>
+        <li>嵌套 await 只向下解释真实阻塞原因，不与上层等待相加。</li>
+        <li>证据缺失给上下界或未知，不伪造时间、不填零；本工具不能推断 CPU 使用率。</li>
+      </ul>
+    </div>
+    <div id="detail" class="hidden">
+      <div class="card" id="summary-card"></div>
+      <div class="card">
+        <h3>根响应时间覆盖（守恒口径 A）</h3>
+        <div id="coverage-bar"></div>
+        <div id="timeline-table"></div>
+      </div>
+      <div class="card">
+        <h3>并行泳道（按服务）</h3>
+        <div id="lanes"></div>
+        <p class="muted small">颜色：client=蓝 server=绿 internal=灰 producer=紫 consumer=橙；
+          菱形=事件，横线=await 窗口。点击任何条目定位原始事件。</p>
+      </div>
+      <div class="card">
+        <h3>await 解除关系</h3><div id="awaits"></div>
+      </div>
+      <div class="card">
+        <h3>RPC 双方配对</h3><div id="rpc"></div>
+      </div>
+      <div class="card">
+        <h3>诊断与证据</h3><div id="diags"></div>
+      </div>
+      <div class="card">
+        <h3>验证问题（含不确定性标注）</h3><div id="issues"></div>
+      </div>
+    </div>
+    <div id="report-view" class="hidden card"></div>
+  </main>
+</div>
+<div id="modal" class="hidden"><pre id="modal-pre"></pre><button id="modal-close">关闭</button></div>
+<script src="/app.js"></script>
+</body>
+</html>

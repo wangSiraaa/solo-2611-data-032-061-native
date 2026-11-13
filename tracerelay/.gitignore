@@ -1,0 +1,8 @@
+# 运行产物：数据库、合成数据、导出、日志，均可用 CLI 重新生成
+var/
+__pycache__/
+*.pyc
+*.db
+*.db-wal
+*.db-shm
+.pytest_cache/
