@@ -1,0 +1,6 @@
+{"record_id": "t1", "amount": 1, "constant": 5, "channel": "web"}
+{"record_id": "t2", "amount": 3, "constant": 5, "channel": "store"}
+{"record_id": "t3", "amount": 5, "constant": 5, "channel": null}
+{"record_id": "t4", "amount": null, "constant": 5, "channel": "__UNKNOWN__"}
+{"record_id": "t5", "amount": 7, "constant": null, "channel": "web"}
+{"record_id": "t6", "amount": 9, "constant": 5, "channel": ""}

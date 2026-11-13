@@ -1,0 +1,6 @@
+{"record_id": "r1", "amount": 3, "constant": 5, "channel": "web"}
+{"record_id": "r2", "amount": null, "constant": null, "channel": null}
+{"record_id": "r3", "amount": 12, "constant": 5, "channel": "partner"}
+{"record_id": "r4", "amount": true, "constant": 5, "channel": "store"}
+{"record_id": "r5", "amount": 7, "constant": 5, "channel": "__UNKNOWN__"}
+{"record_id": "r6", "amount": 4, "constant": 5, "channel": ""}
