@@ -1,0 +1,43 @@
+{"ticket_id": "A000", "channel": "web", "title": "发票问题", "body": "发票 金额 不符 申请 核对 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A001", "channel": "phone", "title": "配送问题", "body": "配送 延误 包裹 地址 查询 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A002", "channel": "web", "title": "账户问题", "body": "账户 登录 密码 重置 失败 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A003", "channel": "phone", "title": "账单问题", "body": "账单 重复 扣款 需要 退款 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A004", "channel": "web", "title": "快递问题", "body": "快递 物流 送达 通知 丢失 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A005", "channel": "phone", "title": "验证码问题", "body": "验证码 未收到 无法 登录 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A006", "channel": "web", "title": "订单问题", "body": "订单 退款 进度 发票 咨询 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A007", "channel": "phone", "title": "收货问题", "body": "收货 地址 修改 配送 失败 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A008", "channel": "web", "title": "登录问题", "body": "登录 页面 密码 校验 错误 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A009", "channel": "phone", "title": "付款问题", "body": "付款 后 未 收到 发票 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A010", "channel": "web", "title": "包裹问题", "body": "包裹 物流 长时间 没有 更新 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A011", "channel": "phone", "title": "账户问题", "body": "账户 手机 变更 需要 验证 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A012", "channel": "web", "title": "发票问题", "body": "发票 金额 不符 申请 核对 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A013", "channel": "phone", "title": "配送问题", "body": "配送 延误 包裹 地址 查询 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A014", "channel": "web", "title": "账户问题", "body": "账户 登录 密码 重置 失败 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A015", "channel": "phone", "title": "账单问题", "body": "账单 重复 扣款 需要 退款 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A016", "channel": "web", "title": "快递问题", "body": "快递 物流 送达 通知 丢失 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A017", "channel": "phone", "title": "验证码问题", "body": "验证码 未收到 无法 登录 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A018", "channel": "web", "title": "订单问题", "body": "订单 退款 进度 发票 咨询 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A019", "channel": "phone", "title": "收货问题", "body": "收货 地址 修改 配送 失败 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A020", "channel": "web", "title": "登录问题", "body": "登录 页面 密码 校验 错误 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A021", "channel": "phone", "title": "付款问题", "body": "付款 后 未 收到 发票 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A022", "channel": "web", "title": "包裹问题", "body": "包裹 物流 长时间 没有 更新 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A023", "channel": "phone", "title": "账户问题", "body": "账户 手机 变更 需要 验证 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A024", "channel": "web", "title": "发票问题", "body": "发票 金额 不符 申请 核对 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A025", "channel": "phone", "title": "配送问题", "body": "配送 延误 包裹 地址 查询 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A026", "channel": "web", "title": "账户问题", "body": "账户 登录 密码 重置 失败 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A027", "channel": "phone", "title": "账单问题", "body": "账单 重复 扣款 需要 退款 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A028", "channel": "web", "title": "快递问题", "body": "快递 物流 送达 通知 丢失 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A029", "channel": "phone", "title": "验证码问题", "body": "验证码 未收到 无法 登录 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A030", "channel": "web", "title": "订单问题", "body": "订单 退款 进度 发票 咨询 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A031", "channel": "phone", "title": "收货问题", "body": "收货 地址 修改 配送 失败 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A032", "channel": "web", "title": "登录问题", "body": "登录 页面 密码 校验 错误 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A033", "channel": "phone", "title": "付款问题", "body": "付款 后 未 收到 发票 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A034", "channel": "web", "title": "包裹问题", "body": "包裹 物流 长时间 没有 更新 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A035", "channel": "phone", "title": "账户问题", "body": "账户 手机 变更 需要 验证 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A036", "channel": "web", "title": "发票问题", "body": "发票 金额 不符 申请 核对 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A037", "channel": "phone", "title": "配送问题", "body": "配送 延误 包裹 地址 查询 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A038", "channel": "web", "title": "账户问题", "body": "账户 登录 密码 重置 失败 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A039", "channel": "phone", "title": "账单问题", "body": "账单 重复 扣款 需要 退款 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A040", "channel": "web", "title": "快递问题", "body": "快递 物流 送达 通知 丢失 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A041", "channel": "phone", "title": "验证码问题", "body": "验证码 未收到 无法 登录 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "EMPTY-A", "channel": "web", "title": "空正文", "body": ""}

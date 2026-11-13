@@ -1,0 +1,52 @@
+{"ticket_id": "A000", "channel": "web", "title": "发票问题", "body": "发票 金额 不符 申请 核对 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A001", "channel": "phone", "title": "配送问题", "body": "配送 延误 包裹 地址 查询 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A002", "channel": "web", "title": "账户问题", "body": "账户 登录 密码 重置 失败 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A003", "channel": "phone", "title": "账单问题", "body": "账单 重复 扣款 需要 退款 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A004", "channel": "web", "title": "快递问题", "body": "快递 物流 送达 通知 丢失 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A005", "channel": "phone", "title": "验证码问题", "body": "验证码 未收到 无法 登录 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "A006", "channel": "web", "title": "订单问题", "body": "订单 退款 进度 发票 咨询 客户 希望 联系 人工 处理 今日"}
+{"ticket_id": "A007", "channel": "phone", "title": "收货问题", "body": "收货 地址 修改 配送 失败 客户 希望 联系 人工 处理 昨日"}
+{"ticket_id": "A008", "channel": "web", "title": "登录问题", "body": "登录 页面 密码 校验 错误 客户 希望 联系 人工 处理 多次"}
+{"ticket_id": "B000", "channel": "web", "title": "发票咨询", "body": "发票 金额 不符 申请 核对 请 协助 查询 处理 进度"}
+{"ticket_id": "B001", "channel": "phone", "title": "配送咨询", "body": "配送 延误 包裹 地址 查询 请 协助 查询 处理 进度"}
+{"ticket_id": "B002", "channel": "mail", "title": "账户咨询", "body": "账户 登录 密码 重置 失败 请 协助 查询 处理 进度"}
+{"ticket_id": "B003", "channel": "web", "title": "账户咨询", "body": "账户 登录 后 无法 管理 团队 权限 请 协助 查询 处理 进度"}
+{"ticket_id": "B004", "channel": "phone", "title": "账单咨询", "body": "账单 重复 扣款 需要 退款 请 协助 查询 处理 进度"}
+{"ticket_id": "B005", "channel": "mail", "title": "快递咨询", "body": "快递 物流 送达 通知 丢失 请 协助 查询 处理 进度"}
+{"ticket_id": "B006", "channel": "web", "title": "验证码咨询", "body": "验证码 未收到 无法 登录 请 协助 查询 处理 进度"}
+{"ticket_id": "B007", "channel": "phone", "title": "团队咨询", "body": "团队 成员 授权 被 拒绝 需要 管理员 请 协助 查询 处理 进度"}
+{"ticket_id": "B008", "channel": "mail", "title": "订单咨询", "body": "订单 退款 进度 发票 咨询 请 协助 查询 处理 进度"}
+{"ticket_id": "B009", "channel": "web", "title": "收货咨询", "body": "收货 地址 修改 配送 失败 请 协助 查询 处理 进度"}
+{"ticket_id": "B010", "channel": "phone", "title": "登录咨询", "body": "登录 页面 密码 校验 错误 请 协助 查询 处理 进度"}
+{"ticket_id": "B011", "channel": "mail", "title": "权限咨询", "body": "权限 变更 后 页面 操作 失败 请 协助 查询 处理 进度"}
+{"ticket_id": "B012", "channel": "web", "title": "付款咨询", "body": "付款 后 未 收到 发票 请 协助 查询 处理 进度"}
+{"ticket_id": "B013", "channel": "phone", "title": "包裹咨询", "body": "包裹 物流 长时间 没有 更新 请 协助 查询 处理 进度"}
+{"ticket_id": "B014", "channel": "mail", "title": "账户咨询", "body": "账户 手机 变更 需要 验证 请 协助 查询 处理 进度"}
+{"ticket_id": "B015", "channel": "web", "title": "管理员咨询", "body": "管理员 添加 新成员 权限 咨询 请 协助 查询 处理 进度"}
+{"ticket_id": "B016", "channel": "phone", "title": "发票咨询", "body": "发票 金额 不符 申请 核对 请 协助 查询 处理 进度"}
+{"ticket_id": "B017", "channel": "mail", "title": "配送咨询", "body": "配送 延误 包裹 地址 查询 请 协助 查询 处理 进度"}
+{"ticket_id": "B018", "channel": "web", "title": "账户咨询", "body": "账户 登录 密码 重置 失败 请 协助 查询 处理 进度"}
+{"ticket_id": "B019", "channel": "phone", "title": "账户咨询", "body": "账户 登录 后 无法 管理 团队 权限 请 协助 查询 处理 进度"}
+{"ticket_id": "B020", "channel": "mail", "title": "账单咨询", "body": "账单 重复 扣款 需要 退款 请 协助 查询 处理 进度"}
+{"ticket_id": "B021", "channel": "web", "title": "快递咨询", "body": "快递 物流 送达 通知 丢失 请 协助 查询 处理 进度"}
+{"ticket_id": "B022", "channel": "phone", "title": "验证码咨询", "body": "验证码 未收到 无法 登录 请 协助 查询 处理 进度"}
+{"ticket_id": "B023", "channel": "mail", "title": "团队咨询", "body": "团队 成员 授权 被 拒绝 需要 管理员 请 协助 查询 处理 进度"}
+{"ticket_id": "B024", "channel": "web", "title": "订单咨询", "body": "订单 退款 进度 发票 咨询 请 协助 查询 处理 进度"}
+{"ticket_id": "B025", "channel": "phone", "title": "收货咨询", "body": "收货 地址 修改 配送 失败 请 协助 查询 处理 进度"}
+{"ticket_id": "B026", "channel": "mail", "title": "登录咨询", "body": "登录 页面 密码 校验 错误 请 协助 查询 处理 进度"}
+{"ticket_id": "B027", "channel": "web", "title": "权限咨询", "body": "权限 变更 后 页面 操作 失败 请 协助 查询 处理 进度"}
+{"ticket_id": "B028", "channel": "phone", "title": "付款咨询", "body": "付款 后 未 收到 发票 请 协助 查询 处理 进度"}
+{"ticket_id": "B029", "channel": "mail", "title": "包裹咨询", "body": "包裹 物流 长时间 没有 更新 请 协助 查询 处理 进度"}
+{"ticket_id": "B030", "channel": "web", "title": "账户咨询", "body": "账户 手机 变更 需要 验证 请 协助 查询 处理 进度"}
+{"ticket_id": "B031", "channel": "phone", "title": "管理员咨询", "body": "管理员 添加 新成员 权限 咨询 请 协助 查询 处理 进度"}
+{"ticket_id": "B032", "channel": "mail", "title": "发票咨询", "body": "发票 金额 不符 申请 核对 请 协助 查询 处理 进度"}
+{"ticket_id": "B033", "channel": "web", "title": "配送咨询", "body": "配送 延误 包裹 地址 查询 请 协助 查询 处理 进度"}
+{"ticket_id": "B034", "channel": "phone", "title": "账户咨询", "body": "账户 登录 密码 重置 失败 请 协助 查询 处理 进度"}
+{"ticket_id": "B035", "channel": "mail", "title": "账户咨询", "body": "账户 登录 后 无法 管理 团队 权限 请 协助 查询 处理 进度"}
+{"ticket_id": "B036", "channel": "web", "title": "账单咨询", "body": "账单 重复 扣款 需要 退款 请 协助 查询 处理 进度"}
+{"ticket_id": "B037", "channel": "phone", "title": "快递咨询", "body": "快递 物流 送达 通知 丢失 请 协助 查询 处理 进度"}
+{"ticket_id": "B038", "channel": "mail", "title": "验证码咨询", "body": "验证码 未收到 无法 登录 请 协助 查询 处理 进度"}
+{"ticket_id": "B039", "channel": "web", "title": "团队咨询", "body": "团队 成员 授权 被 拒绝 需要 管理员 请 协助 查询 处理 进度"}
+{"ticket_id": "B040", "channel": "phone", "title": "订单咨询", "body": "订单 退款 进度 发票 咨询 请 协助 查询 处理 进度"}
+{"ticket_id": "B041", "channel": "mail", "title": "收货咨询", "body": "收货 地址 修改 配送 失败 请 协助 查询 处理 进度"}
+{"ticket_id": "B042", "channel": "web", "title": "登录咨询", "body": "登录 页面 密码 校验 错误 请 协助 查询 处理 进度"}

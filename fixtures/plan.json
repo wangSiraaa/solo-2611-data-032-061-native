@@ -1,0 +1,11 @@
+{
+  "period_a": {
+    "n_topics": 3
+  },
+  "period_b": {
+    "n_topics": 4
+  },
+  "seed": 122,
+  "language": "Chinese text is space-delimited in this synthetic fixture; preserve original text",
+  "min_document_evidence": 2
+}
