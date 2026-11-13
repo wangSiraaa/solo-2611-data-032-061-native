@@ -1,0 +1,34 @@
+{
+  "name": "interrupt",
+  "description": "Kill the client during or after the SQLite transaction.",
+  "resources": {
+    "/mutate": {
+      "content": "Mutation test initial body, version 1.\n",
+      "etag": "\"mutate-v1\"",
+      "cache_control": "max-age=2",
+      "steps": [
+        {},
+        {
+          "content": "Mutation test new body, version 2, committed after a 200.\n",
+          "etag": "\"mutate-v2\"",
+          "cache_control": "max-age=45"
+        },
+        {}
+      ]
+    },
+    "/mutate2": {
+      "content": "Mutation test initial body, version 1.\n",
+      "etag": "\"mutate-v1\"",
+      "cache_control": "max-age=2",
+      "steps": [
+        {},
+        {
+          "content": "Mutation test new body, version 2, committed after a 200.\n",
+          "etag": "\"mutate-v2\"",
+          "cache_control": "max-age=45"
+        },
+        {}
+      ]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "update",
+  "description": "304 refreshes the clock and max-age; missing max-age keeps it.",
+  "resources": {
+    "/page": {
+      "content": "Update test: the original representation.\n",
+      "etag": "\"update-v1\"",
+      "cache_control": "max-age=4",
+      "steps": [
+        {},
+        {
+          "cache_control": "max-age=20"
+        },
+        {}
+      ]
+    },
+    "/keep": {
+      "content": "Keep test: a 304 without Cache-Control keeps the old max-age.\n",
+      "etag": "\"keep-v1\"",
+      "cache_control": "max-age=12",
+      "steps": [
+        {},
+        {
+          "conditional": "no_cache_control"
+        },
+        {}
+      ]
+    }
+  }
+}

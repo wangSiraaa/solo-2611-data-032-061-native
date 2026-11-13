@@ -1,0 +1,51 @@
+{
+  "name": "language",
+  "description": "Language variants, header-name case, value whitespace.",
+  "resources": {
+    "/text": {
+      "description": "Two Accept-Language variants plus a default.",
+      "vary": [
+        "Accept-Language"
+      ],
+      "content": "Greeting for any other Accept-Language value.\n",
+      "etag": "\"lang-base\"",
+      "cache_control": "max-age=12, public",
+      "variants": [
+        {
+          "match": {
+            "accept-language": "en"
+          },
+          "content": "Hello! This is the English representation.\n",
+          "etag": "\"lang-en\""
+        },
+        {
+          "match": {
+            "accept-language": "zh-CN"
+          },
+          "content": "你好！这是简体中文表示。\n",
+          "etag": "\"lang-zh\""
+        }
+      ],
+      "steps": []
+    },
+    "/case": {
+      "description": "Scenario Vary header name is upper case.",
+      "vary": [
+        "ACCEPT-LANGUAGE"
+      ],
+      "content": "Case-insensitive scenario header name test.\n",
+      "etag": "\"case-base\"",
+      "cache_control": "max-age=12",
+      "variants": [
+        {
+          "match": {
+            "Accept-Language": "zh-CN"
+          },
+          "content": "大小写不敏感场景头名测试。\n",
+          "etag": "\"case-zh\""
+        }
+      ],
+      "steps": []
+    }
+  }
+}

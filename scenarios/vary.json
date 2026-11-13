@@ -1,0 +1,36 @@
+{
+  "name": "vary",
+  "description": "A Vary rule change invalidates all old-rule variants.",
+  "resources": {
+    "/greeting": {
+      "vary": [
+        "Accept-Language"
+      ],
+      "content": "Greeting for any other Accept-Language value.\n",
+      "etag": "\"greet-base-v1\"",
+      "cache_control": "max-age=6, public",
+      "variants": [
+        {
+          "match": {
+            "accept-language": "zh-CN"
+          },
+          "content": "问候（仅用于 Vary 规则切换测试）。\n",
+          "etag": "\"greet-zh-v1\""
+        }
+      ],
+      "steps": [
+        {},
+        {},
+        {
+          "vary": [
+            "Accept"
+          ],
+          "content": "Greeting after the Vary rule switched to Accept.\n",
+          "etag": "\"greet-accept-v1\"",
+          "force_200": true
+        },
+        {}
+      ]
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "name": "truncated",
+  "description": "Short bodies, wrong Content-Length and server errors.",
+  "resources": {
+    "/trunc": {
+      "content": "Truncation test, version 1.\n",
+      "etag": "\"trunc-v1\"",
+      "cache_control": "max-age=2",
+      "steps": [
+        {},
+        {
+          "content": "Truncation test, version 2: this body is much longer than five bytes.\n",
+          "etag": "\"trunc-v2\"",
+          "truncate": 5
+        },
+        {}
+      ]
+    },
+    "/badlen": {
+      "content": "Bad Content-Length test, version 1.\n",
+      "etag": "\"badlen-v1\"",
+      "cache_control": "max-age=2",
+      "steps": [
+        {},
+        {
+          "content": "Bad Content-Length test, version 2, full intended body.\n",
+          "etag": "\"badlen-v2\"",
+          "conditional": "raw_bad_length"
+        },
+        {}
+      ]
+    },
+    "/extra": {
+      "content": "Extra body bytes test, version 1.\n",
+      "etag": "\"extra-v1\"",
+      "cache_control": "max-age=2",
+      "steps": [
+        {},
+        {
+          "content": "Extra body bytes test, version 2, intended body.\n",
+          "etag": "\"extra-v2\"",
+          "conditional": "raw_extra_body"
+        },
+        {}
+      ]
+    },
+    "/error": {
+      "content": "Server error test, version 1.\n",
+      "etag": "\"error-v1\"",
+      "cache_control": "max-age=2",
+      "steps": [
+        {},
+        {
+          "error": 500
+        },
+        {}
+      ]
+    }
+  }
+}

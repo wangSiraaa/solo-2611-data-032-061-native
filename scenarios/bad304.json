@@ -1,0 +1,71 @@
+{
+  "name": "bad304",
+  "description": "Protocol violations in 304 responses and unsolicited 304.",
+  "resources": {
+    "/badetag": {
+      "content": "304 with a mismatching ETag must be rejected.\n",
+      "etag": "\"badetag-v1\"",
+      "cache_control": "max-age=2",
+      "steps": [
+        {},
+        {
+          "conditional": "etag_mismatch"
+        },
+        {}
+      ]
+    },
+    "/badvary": {
+      "vary": [
+        "Accept-Language"
+      ],
+      "content": "304 with a mismatching Vary must be rejected.\n",
+      "etag": "\"badvary-v1\"",
+      "cache_control": "max-age=2",
+      "steps": [
+        {},
+        {
+          "conditional": "vary_mismatch"
+        },
+        {}
+      ]
+    },
+    "/noentry": {
+      "content": "Unsolicited 304: there is no stored entry for this URL.\n",
+      "etag": "\"noentry-v1\"",
+      "cache_control": "max-age=2",
+      "steps": [
+        {
+          "conditional": "no_entry"
+        },
+        {}
+      ]
+    },
+    "/absent": {
+      "content": "304 without an ETag cannot prove the stored validator.\n",
+      "etag": "\"absent-v1\"",
+      "cache_control": "max-age=2",
+      "steps": [
+        {},
+        {
+          "conditional": "etag_absent"
+        },
+        {}
+      ]
+    },
+    "/novary": {
+      "vary": [
+        "Accept-Language"
+      ],
+      "content": "304 without a Vary header keeps the stored rule.\n",
+      "etag": "\"novary-v1\"",
+      "cache_control": "max-age=2",
+      "steps": [
+        {},
+        {
+          "conditional": "no_vary"
+        },
+        {}
+      ]
+    }
+  }
+}

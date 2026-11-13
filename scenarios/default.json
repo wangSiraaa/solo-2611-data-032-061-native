@@ -1,0 +1,24 @@
+{
+  "name": "default",
+  "description": "Vary names Accept; missing and empty values coincide.",
+  "resources": {
+    "/default": {
+      "vary": [
+        "Accept"
+      ],
+      "content": "Default representation. Vary names Accept.\n",
+      "etag": "\"default-base\"",
+      "cache_control": "max-age=10",
+      "variants": [
+        {
+          "match": {
+            "accept": "application/json"
+          },
+          "content": "{\"representation\":\"default\"}\n",
+          "etag": "\"default-json\""
+        }
+      ],
+      "steps": []
+    }
+  }
+}

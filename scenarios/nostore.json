@@ -1,0 +1,40 @@
+{
+  "name": "nostore",
+  "description": "no-store and Vary '*' never persist and evict the old entry.",
+  "resources": {
+    "/plain": {
+      "content": "no-store: this response must never become a cache entry.\n",
+      "etag": "\"plain-v1\"",
+      "cache_control": "max-age=2",
+      "steps": [
+        {},
+        {
+          "force_200": true,
+          "cache_control": "max-age=50, no-store",
+          "content": "no-store: this body comes from the network, not the cache.\n",
+          "etag": "\"plain-v2\""
+        },
+        {
+          "cache_control": "max-age=50",
+          "content": "no-store: this body comes from the network, not the cache.\n",
+          "etag": "\"plain-v2\""
+        }
+      ]
+    },
+    "/star": {
+      "content": "Vary '*' responses have no cache key and are never stored.\n",
+      "etag": "\"star-v1\"",
+      "cache_control": "max-age=2",
+      "steps": [
+        {},
+        {
+          "force_200": true,
+          "vary": "*"
+        },
+        {
+          "vary": []
+        }
+      ]
+    }
+  }
+}

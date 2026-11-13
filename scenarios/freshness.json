@@ -1,0 +1,45 @@
+{
+  "name": "freshness",
+  "description": "Freshness boundary and unknown Cache-Control directives.",
+  "resources": {
+    "/clock": {
+      "content": "Clock body used for the freshness boundary tests.\n",
+      "etag": "\"clock-v1\"",
+      "cache_control": "max-age=5",
+      "steps": []
+    },
+    "/directives": {
+      "content": "Unknown directives are ignored; max-age is honoured.\n",
+      "etag": "\"directives-v1\"",
+      "cache_control": "max-age=3, s-maxage=999, must-revalidate, public",
+      "steps": [
+        {},
+        {
+          "cache_control": "max-age=7, stale-while-revalidate=30"
+        }
+      ]
+    },
+    "/zero": {
+      "content": "max-age=0 is never fresh, not even at the receive instant.\n",
+      "etag": "\"zero-v1\"",
+      "cache_control": "max-age=0",
+      "steps": [
+        {},
+        {
+          "cache_control": "max-age=0"
+        }
+      ]
+    },
+    "/nomax": {
+      "content": "No max-age: stored only for revalidation, never served fresh.\n",
+      "etag": "\"nomax-v1\"",
+      "cache_control": null,
+      "steps": [
+        {},
+        {
+          "cache_control": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "replace",
+  "description": "A revalidation that returns 200 replaces the entry.",
+  "resources": {
+    "/page": {
+      "content": "Replacement test, representation v1.\n",
+      "etag": "\"replace-v1\"",
+      "cache_control": "max-age=3",
+      "steps": [
+        {},
+        {
+          "content": "Replacement test, representation v2 with a new ETag.\n",
+          "etag": "\"replace-v2\"",
+          "cache_control": "max-age=30",
+          "force_200": true
+        },
+        {}
+      ]
+    }
+  }
+}
