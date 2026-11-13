@@ -1,0 +1,44 @@
+{
+  "sources": [
+    {
+      "id": "A",
+      "path": "fixtures/source_a.tif",
+      "priority": 10,
+      "unit": "index_unit"
+    },
+    {
+      "id": "B",
+      "path": "fixtures/source_b.tif",
+      "priority": 20,
+      "unit": "index_unit"
+    }
+  ],
+  "priority_rule": "larger numeric priority wins; ties ascending source id",
+  "target": {
+    "crs": "EPSG:3857",
+    "resolution": [
+      50,
+      50
+    ],
+    "bounds": [
+      0,
+      0,
+      1000,
+      1000
+    ],
+    "grid_anchor": [
+      0,
+      0
+    ],
+    "unit": "index_unit"
+  },
+  "supported_crs": [
+    "EPSG:3857",
+    "EPSG:4326"
+  ],
+  "resampling": "bilinear",
+  "window_shape": [
+    7,
+    9
+  ]
+}
