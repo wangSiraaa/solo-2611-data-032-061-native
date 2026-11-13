@@ -11,3 +11,6 @@ venv/
 htmlcov/
 .DS_Store
 *.log
+
+# 本任务本地产物：SQLite 归档、生成的 JSON 输入与结果
+var/
