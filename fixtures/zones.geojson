@@ -1,0 +1,129 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_id": "A",
+        "priority": 20
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -10,
+              -10
+            ],
+            [
+              70,
+              -10
+            ],
+            [
+              70,
+              160
+            ],
+            [
+              -10,
+              160
+            ],
+            [
+              -10,
+              -10
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_id": "B",
+        "priority": 10
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              40,
+              -10
+            ],
+            [
+              140,
+              -10
+            ],
+            [
+              140,
+              110
+            ],
+            [
+              40,
+              110
+            ],
+            [
+              40,
+              -10
+            ]
+          ],
+          [
+            [
+              110,
+              20
+            ],
+            [
+              120,
+              20
+            ],
+            [
+              120,
+              40
+            ],
+            [
+              110,
+              40
+            ],
+            [
+              110,
+              20
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_id": "C",
+        "priority": 20
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              60,
+              10
+            ],
+            [
+              120,
+              10
+            ],
+            [
+              120,
+              90
+            ],
+            [
+              60,
+              90
+            ],
+            [
+              60,
+              10
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

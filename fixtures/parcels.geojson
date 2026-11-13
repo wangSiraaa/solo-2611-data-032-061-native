@@ -1,0 +1,155 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "P1",
+        "energy_wh": 1001
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              100,
+              0
+            ],
+            [
+              100,
+              100
+            ],
+            [
+              0,
+              100
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              30,
+              30
+            ],
+            [
+              40,
+              30
+            ],
+            [
+              40,
+              40
+            ],
+            [
+              30,
+              40
+            ],
+            [
+              30,
+              30
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "P2",
+        "energy_wh": 809
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              100,
+              0
+            ],
+            [
+              180,
+              0
+            ],
+            [
+              180,
+              80
+            ],
+            [
+              100,
+              80
+            ],
+            [
+              100,
+              0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "P3",
+        "energy_wh": 997
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                0,
+                120
+              ],
+              [
+                30,
+                120
+              ],
+              [
+                30,
+                150
+              ],
+              [
+                0,
+                150
+              ],
+              [
+                0,
+                120
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                50,
+                120
+              ],
+              [
+                80,
+                120
+              ],
+              [
+                80,
+                150
+              ],
+              [
+                50,
+                150
+              ],
+              [
+                50,
+                120
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

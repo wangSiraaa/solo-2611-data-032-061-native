@@ -1,0 +1,9 @@
+{
+  "crs": "EPSG:3857",
+  "coordinate_unit": "metre",
+  "priority_rule": "higher numeric priority wins, then ascending zone_id",
+  "precision_grid": 0.01,
+  "area_tolerance_m2": 1e-05,
+  "unassigned_id": "UNASSIGNED",
+  "wh_remainder_tie_break": "ascending zone_id then canonical fragment geometry"
+}
