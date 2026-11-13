@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbrli:xbrl xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:ex="urn:solo:financial:v1">
+<link:schemaRef xlink:type="simple" xlink:href="taxonomy/example.xsd"/>
+<xbrli:context id="north"><xbrli:entity><xbrli:identifier scheme="urn:solo:entity">DEMO-01</xbrli:identifier><xbrli:segment><xbrldi:explicitMember dimension="ex:RegionAxis">ex:North</xbrldi:explicitMember><xbrldi:explicitMember dimension="ex:ChannelAxis">ex:Online</xbrldi:explicitMember></xbrli:segment></xbrli:entity><xbrli:period><xbrli:startDate>2025-01-01</xbrli:startDate><xbrli:endDate>2025-03-31</xbrli:endDate></xbrli:period></xbrli:context>
+<xbrli:unit id="CNY"><xbrli:measure>iso4217:CNY</xbrli:measure></xbrli:unit><xbrli:unit id="USD"><xbrli:measure>iso4217:USD</xbrli:measure></xbrli:unit>
+<ex:Revenue contextRef="north" unitRef="CNY" decimals="0">500000</ex:Revenue>
+<ex:Cost contextRef="north" unitRef="CNY" decimals="0">360000</ex:Cost>
+<ex:Profit contextRef="north" unitRef="CNY" decimals="0">140000</ex:Profit>
+<ex:Revenue contextRef="north" unitRef="USD" decimals="0">72000</ex:Revenue><ex:Profit contextRef="north" unitRef="USD" xsi:nil="true"/>
+</xbrli:xbrl>

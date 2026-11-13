@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xbrli="http://www.xbrl.org/2003/instance" targetNamespace="http://www.xbrl.org/2003/instance" elementFormDefault="qualified">
+ <xs:attribute name="periodType" type="xs:string"/>
+ <xs:complexType name="decimalItemType"><xs:simpleContent><xs:extension base="xs:decimal"><xs:attribute name="contextRef" type="xs:IDREF" use="required"/><xs:attribute name="unitRef" type="xs:IDREF" use="required"/><xs:attribute name="decimals" type="xs:string"/><xs:anyAttribute processContents="lax"/></xs:extension></xs:simpleContent></xs:complexType>
+ <xs:complexType name="monetaryItemType"><xs:simpleContent><xs:extension base="xbrli:decimalItemType"/></xs:simpleContent></xs:complexType>
+ <xs:complexType name="stringItemType"><xs:simpleContent><xs:extension base="xs:string"><xs:anyAttribute processContents="lax"/></xs:extension></xs:simpleContent></xs:complexType>
+ <xs:element name="item" type="xs:anyType" abstract="true"/>
+</xs:schema>

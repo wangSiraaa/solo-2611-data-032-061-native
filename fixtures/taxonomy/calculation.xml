@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<link:linkbase xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink"><link:calculationLink xlink:type="extended" xlink:role="http://www.xbrl.org/2003/role/link">
+<link:loc xlink:type="locator" xlink:href="example.xsd#Revenue" xlink:label="Revenue"/>
+<link:loc xlink:type="locator" xlink:href="example.xsd#Cost" xlink:label="Cost"/>
+<link:loc xlink:type="locator" xlink:href="example.xsd#Profit" xlink:label="Profit"/>
+<link:calculationArc xlink:type="arc" xlink:arcrole="http://www.xbrl.org/2003/arcrole/summation-item" xlink:from="Profit" xlink:to="Revenue" order="1" weight="1"/>
+<link:calculationArc xlink:type="arc" xlink:arcrole="http://www.xbrl.org/2003/arcrole/summation-item" xlink:from="Profit" xlink:to="Cost" order="2" weight="-1"/>
+</link:calculationLink></link:linkbase>
