@@ -1,0 +1,54 @@
+{
+  "type": "record",
+  "name": "Event",
+  "namespace": "demo",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "name",
+      "aliases": [
+        "old_name"
+      ],
+      "type": "string"
+    },
+    {
+      "name": "tags",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "contact",
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    {
+      "name": "profile",
+      "type": {
+        "type": "record",
+        "name": "Profile",
+        "fields": [
+          {
+            "name": "score",
+            "type": "long"
+          },
+          {
+            "name": "active",
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    {
+      "name": "region",
+      "type": "string",
+      "default": "unknown"
+    }
+  ]
+}

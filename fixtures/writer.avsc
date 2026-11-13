@@ -1,0 +1,46 @@
+{
+  "type": "record",
+  "name": "Event",
+  "namespace": "demo",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "old_name",
+      "type": "string"
+    },
+    {
+      "name": "tags",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "contact",
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    {
+      "name": "profile",
+      "type": {
+        "type": "record",
+        "name": "Profile",
+        "fields": [
+          {
+            "name": "score",
+            "type": "int"
+          },
+          {
+            "name": "active",
+            "type": "boolean"
+          }
+        ]
+      }
+    }
+  ]
+}
