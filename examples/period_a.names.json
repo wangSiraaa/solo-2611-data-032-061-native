@@ -1,0 +1,29 @@
+{
+  "input_sha256": "2c4b0cba5e859b5704fa3d27f355cc3cebe70ff130ef2d130dd5a9aabd7207da",
+  "model_summary_sha256": "c9ebbb3a2587976a57057db3504e303faedd65a6534d685b389e00d2e933af1e",
+  "period": "a",
+  "schema": "topic-migrate/names/v1",
+  "topics": [
+    {
+      "fingerprint": "92909b5a2869737d38f57ca9c4fab2cfb636383bc683eb636128b9a87bcb15e6",
+      "local_id": 0,
+      "name": "账户登录",
+      "note": "人工命名示例",
+      "topic_id": "acct-login"
+    },
+    {
+      "fingerprint": "4488cc6d2408c362c524c06705ef3becad05fd3cc2f29fbee3064d7ba9fd20f3",
+      "local_id": 1,
+      "name": "配送物流",
+      "note": "人工命名示例",
+      "topic_id": "logistics-delivery"
+    },
+    {
+      "fingerprint": "5414199f2d5ac4fd9a3a8f232294ef5ca1510010172102a87fd902827d152daa",
+      "local_id": 2,
+      "name": "账单发票",
+      "note": "人工命名示例",
+      "topic_id": "billing-invoice"
+    }
+  ]
+}

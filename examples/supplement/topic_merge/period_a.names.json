@@ -1,0 +1,22 @@
+{
+  "input_sha256": "a0f5c63a59c176ba4c8368fc23fd5c141a2a86797040e8a697514fb777c39719",
+  "model_summary_sha256": "f666ad3b7506d079bbcdf558f2fc978ca0fefb71bc67f0f759fd0dbaf9ec440f",
+  "period": "a",
+  "schema": "topic-migrate/names/v1",
+  "topics": [
+    {
+      "fingerprint": "f4983402cb100b25f304a7f4666cafceb8353cda78c45d198c982f50440cfcfe",
+      "local_id": 0,
+      "name": "配送物流",
+      "note": "人工命名示例",
+      "topic_id": "logistics-delivery"
+    },
+    {
+      "fingerprint": "0bd6ea6070738cc3f2d02e2b466d05af01dd2e42e116382cdf8fe3460aafbbf1",
+      "local_id": 1,
+      "name": "账户登录",
+      "note": "人工命名示例",
+      "topic_id": "acct-login"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "period_a": {
+    "n_topics": 2
+  },
+  "period_b": {
+    "n_topics": 2
+  },
+  "seed": 7,
+  "min_document_evidence": 2
+}

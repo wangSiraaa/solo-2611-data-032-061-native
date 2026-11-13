@@ -1,0 +1,276 @@
+{
+  "binding": {
+    "compare_config": {
+      "candidate_floor": 0.2,
+      "near_delta": 0.1,
+      "strong_threshold": 0.32,
+      "weight_document": 0.3,
+      "weight_support": 0.2,
+      "weight_term": 0.5
+    },
+    "compare_sha256": "115e4d850c6066f749c31dec8418d685c64a06632ae8f03024b608f5424f1d9c",
+    "new_input_sha256": "c4d57aaaae9100c1b8b7e718e91a5972322a5cad8a4b2a2c272fb080b82b9a89",
+    "new_model_summary_sha256": "d60f14a98e985a28057d2a2ab441a0acd8d4e9f3f6bcde7b87b237eea0f61852",
+    "new_period": "b",
+    "old_input_sha256": "2c4b0cba5e859b5704fa3d27f355cc3cebe70ff130ef2d130dd5a9aabd7207da",
+    "old_model_summary_sha256": "c9ebbb3a2587976a57057db3504e303faedd65a6534d685b389e00d2e933af1e",
+    "old_names_sha256": "fe603806b95295ec4eb5614f8dc578e9eaad4d0b443b443c0b767b6877d1c40f",
+    "old_period": "a",
+    "plan_sha256": "ac467fee4737eea8314241f83df07f24c511960f70f197aabd11f822a6b05329"
+  },
+  "decisions": [
+    {
+      "action": "continue",
+      "candidates": [
+        {
+          "co_assigned_count": 3,
+          "composite": 0.600788,
+          "document_affinity": 0.254317,
+          "old_local_id": 0,
+          "old_name": "账户登录",
+          "old_topic_id": "acct-login",
+          "support_jaccard": 0.846154,
+          "term_score": 0.710524
+        },
+        {
+          "co_assigned_count": 0,
+          "composite": 0.034305,
+          "document_affinity": 0.062396,
+          "old_local_id": 2,
+          "old_name": "账单发票",
+          "old_topic_id": "billing-invoice",
+          "support_jaccard": 0.0,
+          "term_score": 0.031173
+        },
+        {
+          "co_assigned_count": 0,
+          "composite": 0.032848,
+          "document_affinity": 0.071956,
+          "old_local_id": 1,
+          "old_name": "配送物流",
+          "old_topic_id": "logistics-delivery",
+          "support_jaccard": 0.0,
+          "term_score": 0.022523
+        }
+      ],
+      "continue_topic_id": "acct-login",
+      "flags": [],
+      "new_fingerprint": "929c8d79bd34b5e01bf7d3f0a10dcdc3661ffe7ea62c73da751f5ec5121348c1",
+      "new_local_id": 0,
+      "new_name": "",
+      "new_top_terms": [
+        "登录",
+        "密码",
+        "账户",
+        "无法",
+        "重置",
+        "页面",
+        "失败",
+        "校验",
+        "错误",
+        "未收到"
+      ],
+      "new_topic_id": "",
+      "note": "",
+      "status": "continuation_candidate",
+      "suggested_name": "账户登录",
+      "suggested_topic_id": "acct-login"
+    },
+    {
+      "action": "continue",
+      "candidates": [
+        {
+          "co_assigned_count": 2,
+          "composite": 0.473655,
+          "document_affinity": 0.214235,
+          "old_local_id": 1,
+          "old_name": "配送物流",
+          "old_topic_id": "logistics-delivery",
+          "support_jaccard": 0.333333,
+          "term_score": 0.685435
+        },
+        {
+          "co_assigned_count": 0,
+          "composite": 0.083538,
+          "document_affinity": 0.138788,
+          "old_local_id": 0,
+          "old_name": "账户登录",
+          "old_topic_id": "acct-login",
+          "support_jaccard": 0.043478,
+          "term_score": 0.066412
+        },
+        {
+          "co_assigned_count": 0,
+          "composite": 0.027503,
+          "document_affinity": 0.088958,
+          "old_local_id": 2,
+          "old_name": "账单发票",
+          "old_topic_id": "billing-invoice",
+          "support_jaccard": 0.0,
+          "term_score": 0.00163
+        }
+      ],
+      "continue_topic_id": "logistics-delivery",
+      "flags": [],
+      "new_fingerprint": "c53f57f52c6c681a4b5c7a08aae9d42cd34f50534b039e0b15341f7c710b823e",
+      "new_local_id": 1,
+      "new_name": "",
+      "new_top_terms": [
+        "地址",
+        "配送",
+        "延误",
+        "包裹",
+        "修改",
+        "收货",
+        "失败",
+        "昨日",
+        "人工",
+        "客户"
+      ],
+      "new_topic_id": "",
+      "note": "",
+      "status": "continuation_candidate",
+      "suggested_name": "配送物流",
+      "suggested_topic_id": "logistics-delivery"
+    },
+    {
+      "action": "continue",
+      "candidates": [
+        {
+          "co_assigned_count": 3,
+          "composite": 0.612314,
+          "document_affinity": 0.296321,
+          "old_local_id": 2,
+          "old_name": "账单发票",
+          "old_topic_id": "billing-invoice",
+          "support_jaccard": 0.846154,
+          "term_score": 0.708374
+        },
+        {
+          "co_assigned_count": 0,
+          "composite": 0.063628,
+          "document_affinity": 0.173336,
+          "old_local_id": 0,
+          "old_name": "账户登录",
+          "old_topic_id": "acct-login",
+          "support_jaccard": 0.0,
+          "term_score": 0.023254
+        },
+        {
+          "co_assigned_count": 0,
+          "composite": 0.039696,
+          "document_affinity": 0.121881,
+          "old_local_id": 1,
+          "old_name": "配送物流",
+          "old_topic_id": "logistics-delivery",
+          "support_jaccard": 0.0,
+          "term_score": 0.006264
+        }
+      ],
+      "continue_topic_id": "billing-invoice",
+      "flags": [],
+      "new_fingerprint": "f499eccb159a52f21060a2de150f1f0a3b3af0e810d1be8f50b88dc19624ade6",
+      "new_local_id": 2,
+      "new_name": "",
+      "new_top_terms": [
+        "退款",
+        "发票",
+        "咨询",
+        "订单",
+        "扣款",
+        "账单",
+        "重复",
+        "需要",
+        "不符",
+        "核对"
+      ],
+      "new_topic_id": "",
+      "note": "",
+      "status": "continuation_candidate",
+      "suggested_name": "账单发票",
+      "suggested_topic_id": "billing-invoice"
+    },
+    {
+      "action": "new",
+      "candidates": [
+        {
+          "co_assigned_count": 1,
+          "composite": 0.337441,
+          "document_affinity": 0.185309,
+          "old_local_id": 1,
+          "old_name": "配送物流",
+          "old_topic_id": "logistics-delivery",
+          "support_jaccard": 0.333333,
+          "term_score": 0.430363
+        },
+        {
+          "co_assigned_count": 0,
+          "composite": 0.048339,
+          "document_affinity": 0.147145,
+          "old_local_id": 0,
+          "old_name": "账户登录",
+          "old_topic_id": "acct-login",
+          "support_jaccard": 0.0,
+          "term_score": 0.008391
+        },
+        {
+          "co_assigned_count": 0,
+          "composite": 0.03359,
+          "document_affinity": 0.105087,
+          "old_local_id": 2,
+          "old_name": "账单发票",
+          "old_topic_id": "billing-invoice",
+          "support_jaccard": 0.0,
+          "term_score": 0.004128
+        }
+      ],
+      "continue_topic_id": "",
+      "flags": [
+        "possible_split_from_old_topic"
+      ],
+      "new_fingerprint": "d504c7529e6ffd523bcbef911e8eafbc4a23d750364875a50bf2496790551bc4",
+      "new_local_id": 3,
+      "new_name": "物流异常（拆分）",
+      "new_top_terms": [
+        "物流",
+        "丢失",
+        "快递",
+        "送达",
+        "通知",
+        "昨日",
+        "人工",
+        "客户",
+        "希望",
+        "联系"
+      ],
+      "new_topic_id": "logistics-exceptions",
+      "note": "人工确认：从旧配送物流主题拆出",
+      "status": "continuation_candidate",
+      "suggested_name": "配送物流",
+      "suggested_topic_id": "logistics-delivery"
+    }
+  ],
+  "instructions": "For every decisions[] entry choose exactly one action: 'continue' with continue_topic_id copied from an old topic (name is inherited), or 'new' with a fresh new_topic_id and new_name. Empty or 'defer' actions are rejected at apply time. Retirements are optional; only action='retire' entries count. Do not edit binding, fingerprints, or snapshots.",
+  "retirements": [
+    {
+      "action": "",
+      "local_id": 0,
+      "name": "账户登录",
+      "topic_id": "acct-login"
+    },
+    {
+      "action": "",
+      "local_id": 1,
+      "name": "配送物流",
+      "topic_id": "logistics-delivery"
+    },
+    {
+      "action": "",
+      "local_id": 2,
+      "name": "账单发票",
+      "topic_id": "billing-invoice"
+    }
+  ],
+  "schema": "topic-migrate/decision/v1",
+  "tool_version": "0.1.0"
+}

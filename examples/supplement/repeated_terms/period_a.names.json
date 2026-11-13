@@ -1,0 +1,22 @@
+{
+  "input_sha256": "f48c7e8ed619073f2f76eef38348c4e469d6372b75bbfc2893905d2e26d85348",
+  "model_summary_sha256": "715c55e43292340b50a472f3e691ddfebb052fa33c71b54b0de9ee7aff825ca2",
+  "period": "a",
+  "schema": "topic-migrate/names/v1",
+  "topics": [
+    {
+      "fingerprint": "733685c1f2bf6450d865cfdba3d61e0e0876a833456c761a80154e5776638d3f",
+      "local_id": 0,
+      "name": "退款账单",
+      "note": "人工命名示例",
+      "topic_id": "billing-refund"
+    },
+    {
+      "fingerprint": "acd10b00cb2454fe9fcee266a236020dc92eabb8c4875de1441881f680a3c2e8",
+      "local_id": 1,
+      "name": "退款配送",
+      "note": "人工命名示例",
+      "topic_id": "delivery-refund"
+    }
+  ]
+}

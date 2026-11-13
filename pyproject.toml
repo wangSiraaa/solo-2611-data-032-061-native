@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "topic-migrate"
+version = "0.1.0"
+description = "Local topic analysis with fingerprint-bound business names"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26,<3", "scikit-learn>=1.3,<2"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "pyflakes"]
+
+[project.scripts]
+topic-migrate = "topic_migrate.cli:main"
+
+[tool.setuptools]
+packages = ["topic_migrate"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

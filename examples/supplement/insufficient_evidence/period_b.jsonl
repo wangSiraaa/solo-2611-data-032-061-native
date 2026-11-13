@@ -1,0 +1,14 @@
+{"ticket_id": "E-A01", "channel": "web", "title": "账户", "body": "账户 登录 密码 重置 失败 验证码 未收到 无法"}
+{"ticket_id": "E-A06", "channel": "phone", "title": "配送", "body": "配送 延误 包裹 地址 查询 物流 丢失 快递"}
+{"ticket_id": "E-B01", "channel": "web", "title": "账户", "body": "账户 登录 密码 重置 失败 验证码 未收到 无法"}
+{"ticket_id": "E-B02", "channel": "web", "title": "账户", "body": "账户 登录 密码 重置 失败 验证码 未收到 无法"}
+{"ticket_id": "E-B03", "channel": "web", "title": "账户", "body": "账户 登录 密码 重置 失败 验证码 未收到 无法"}
+{"ticket_id": "E-B04", "channel": "web", "title": "账户", "body": "账户 登录 密码 重置 失败 验证码 未收到 无法"}
+{"ticket_id": "E-B05", "channel": "phone", "title": "配送", "body": "配送 延误 包裹 地址 查询 物流 丢失 快递"}
+{"ticket_id": "E-B06", "channel": "phone", "title": "配送", "body": "配送 延误 包裹 地址 查询 物流 丢失 快递"}
+{"ticket_id": "E-B07", "channel": "phone", "title": "配送", "body": "配送 延误 包裹 地址 查询 物流 丢失 快递"}
+{"ticket_id": "E-B08", "channel": "phone", "title": "配送", "body": "配送 延误 包裹 地址 查询 物流 丢失 快递"}
+{"ticket_id": "E-WEAK1", "channel": "mail", "title": "咨询", "body": "发票"}
+{"ticket_id": "E-WEAK2", "channel": "mail", "title": "咨询", "body": "请 协助"}
+{"ticket_id": "E-EMPTY", "channel": "web", "title": "空正文", "body": ""}
+{"ticket_id": "E-SPACE", "channel": "web", "title": "空白", "body": "   "}

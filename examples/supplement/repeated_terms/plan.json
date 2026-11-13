@@ -1,0 +1,11 @@
+{
+  "period_a": {
+    "n_topics": 2
+  },
+  "period_b": {
+    "n_topics": 3
+  },
+  "seed": 122,
+  "language": "space-delimited",
+  "min_document_evidence": 2
+}
