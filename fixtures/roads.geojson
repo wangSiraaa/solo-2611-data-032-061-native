@@ -1,0 +1,211 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "edge_id": "ab",
+        "from": "A",
+        "to": "B",
+        "max_speed_mps": 18
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            100,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "edge_id": "bc",
+        "from": "B",
+        "to": "C",
+        "max_speed_mps": 18
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            100,
+            0
+          ],
+          [
+            200,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "edge_id": "de",
+        "from": "D",
+        "to": "E",
+        "max_speed_mps": 18
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0,
+            12
+          ],
+          [
+            100,
+            12
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "edge_id": "ef",
+        "from": "E",
+        "to": "F",
+        "max_speed_mps": 18
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            100,
+            12
+          ],
+          [
+            200,
+            12
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "edge_id": "be",
+        "from": "B",
+        "to": "E",
+        "max_speed_mps": 18
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            12
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "edge_id": "fc",
+        "from": "F",
+        "to": "C",
+        "max_speed_mps": 18
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            200,
+            12
+          ],
+          [
+            200,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "edge_id": "ca",
+        "from": "C",
+        "to": "A",
+        "max_speed_mps": 18
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            200,
+            0
+          ],
+          [
+            200,
+            -30
+          ],
+          [
+            0,
+            -30
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "edge_id": "gh",
+        "from": "G",
+        "to": "H",
+        "max_speed_mps": 18
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            100,
+            -60
+          ],
+          [
+            100,
+            70
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "edge_id": "fi",
+        "from": "F",
+        "to": "I",
+        "max_speed_mps": 18
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            200,
+            12
+          ],
+          [
+            250,
+            60
+          ]
+        ]
+      }
+    }
+  ]
+}

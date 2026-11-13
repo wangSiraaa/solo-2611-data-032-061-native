@@ -1,0 +1,5 @@
+{
+  "candidate_radius_m": 25,
+  "max_candidates": 4,
+  "speed_slack_factor": 1.3
+}
