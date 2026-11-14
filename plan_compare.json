@@ -1,0 +1,2495 @@
+{
+  "tool": "plancompare",
+  "version": "0.1.0",
+  "inputs": {
+    "before": "fixtures/before.json",
+    "after": "fixtures/after.json",
+    "before_capture": "fixtures/capture.json",
+    "after_capture": "fixtures/capture.json"
+  },
+  "comparability": {
+    "status": "ok",
+    "directly_comparable": true,
+    "can_attribute_to_plan": false,
+    "checks": [
+      {
+        "check": "sql_identity",
+        "result": "same_manifest",
+        "detail": "同一清单覆盖两侧，sql_sha256=4ba802827edac7212557d014f97d8f46b608a92e93298543547599bc3cfd4d18"
+      },
+      {
+        "check": "parameters",
+        "result": "same_manifest",
+        "value": {}
+      },
+      {
+        "check": "data_snapshot",
+        "result": "same_manifest",
+        "value": "a034677a8e8453dcaa4e78c0fc8b1725369faf8af334b6d4bdacc7a378252b91"
+      },
+      {
+        "check": "capture_settings",
+        "result": "differ",
+        "before": "SET max_parallel_workers_per_gather=0; SET jit=off; SET enable_nestloop=off; SET enable_mergejoin=off; SET enable_hashjoin=on; SET enable_hashagg=on;",
+        "after": "SET max_parallel_workers_per_gather=0; SET jit=off; SET enable_nestloop=on; SET enable_mergejoin=off; SET enable_hashjoin=off; SET enable_hashagg=off;"
+      }
+    ],
+    "caveats": [
+      "两次采集的执行设置不同：计划结构变化可能由设置驱动，不能单独归因于数据或优化器",
+      "清单注明：Single small local run; not a statistically supported performance benchmark. Settings intentionally differ to produce plan structure changes."
+    ]
+  },
+  "plan_level": {
+    "execution_time_ms": {
+      "before": 3.537,
+      "after": 3.936,
+      "before_pointer": "/0/Execution Time",
+      "after_pointer": "/0/Execution Time",
+      "delta": 0.399,
+      "ratio": 1.112807
+    },
+    "planning_time_ms": {
+      "before": 82.01,
+      "after": 0.758,
+      "before_pointer": "/0/Planning Time",
+      "after_pointer": "/0/Planning Time",
+      "delta": -81.252,
+      "ratio": 0.009243
+    },
+    "root_node_type": {
+      "before": "Sort",
+      "after": "Aggregate",
+      "before_pointer": "/0/Plan/Node Type",
+      "after_pointer": "/0/Plan/Node Type"
+    },
+    "result_rows_xloops": {
+      "before": 6.0,
+      "after": 6.0,
+      "before_pointer": "/0/Plan/Actual Rows",
+      "after_pointer": "/0/Plan/Actual Rows",
+      "delta": 0.0,
+      "ratio": 1.0,
+      "derived": true,
+      "note": "根节点 Actual Rows × Actual Loops"
+    }
+  },
+  "correspondence": [
+    {
+      "id": "c01",
+      "status": "matched",
+      "evidence": [
+        "Sort 按排序键 ['c.region', 'p.region'] + 输入表集合 {c,o,p} 对应，两侧均唯一"
+      ],
+      "structural_changes": [
+        "树中位置变化：before 位于 Sort，after 位于 Aggregate>Sort"
+      ],
+      "before": {
+        "pointer": "/0/Plan",
+        "node_type": "Sort",
+        "label": "Sort key(c.region, p.region)",
+        "context": "Sort",
+        "supported": true,
+        "relation_set": [
+          "c",
+          "o",
+          "p"
+        ]
+      },
+      "after": {
+        "pointer": "/0/Plan/Plans/0",
+        "node_type": "Sort",
+        "label": "Sort key(c.region, p.region)",
+        "context": "Aggregate>Sort",
+        "supported": true,
+        "relation_set": [
+          "c",
+          "o",
+          "p"
+        ]
+      },
+      "metrics": {
+        "convention": "Actual Rows/Actual Total Time 为每次循环值；*_xloops 为乘 Actual Loops 后的合计；父节点数值包含子节点",
+        "plan_rows": {
+          "before": 9.0,
+          "after": 2125.0,
+          "before_pointer": "/0/Plan/Plan Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plan Rows",
+          "delta": 2116.0,
+          "ratio": 236.111111
+        },
+        "actual_rows_per_loop": {
+          "before": 6.0,
+          "after": 2124.0,
+          "before_pointer": "/0/Plan/Actual Rows",
+          "after_pointer": "/0/Plan/Plans/0/Actual Rows",
+          "delta": 2118.0,
+          "ratio": 354.0
+        },
+        "actual_loops": {
+          "before": 1.0,
+          "after": 1.0,
+          "before_pointer": "/0/Plan/Actual Loops",
+          "after_pointer": "/0/Plan/Plans/0/Actual Loops",
+          "delta": 0.0,
+          "ratio": 1.0
+        },
+        "actual_rows_total_xloops": {
+          "before": 6.0,
+          "after": 2124.0,
+          "before_pointer": "/0/Plan/Actual Rows",
+          "after_pointer": "/0/Plan/Plans/0/Actual Rows",
+          "delta": 2118.0,
+          "ratio": 354.0,
+          "derived": true,
+          "note": "由 Actual Rows × Actual Loops 推算"
+        },
+        "est_ratio_per_loop": {
+          "before": 0.666667,
+          "after": 0.999529,
+          "before_pointer": "/0/Plan/Plan Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plan Rows",
+          "delta": 0.332862,
+          "ratio": 1.499293,
+          "derived": true,
+          "note": "每循环 Actual Rows / Plan Rows；>1 表示低估"
+        },
+        "actual_total_time_per_loop_ms": {
+          "before": 3.4,
+          "after": 3.369,
+          "before_pointer": "/0/Plan/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Actual Total Time",
+          "delta": -0.031,
+          "ratio": 0.990882,
+          "note": "含子节点"
+        },
+        "actual_total_time_xloops_ms": {
+          "before": 3.4,
+          "after": 3.369,
+          "before_pointer": "/0/Plan/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Actual Total Time",
+          "delta": -0.031,
+          "ratio": 0.990882,
+          "derived": true,
+          "note": "含子节点；由 Actual Total Time × Actual Loops 推算"
+        },
+        "self_time_xloops_ms": {
+          "before": 0.103,
+          "after": 1.165,
+          "before_pointer": "/0/Plan/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Actual Total Time",
+          "before_status": "ok",
+          "after_status": "ok",
+          "delta": 1.062,
+          "derived": true,
+          "note": "自耗时=自身×Loops总时间−子节点×Loops总时间；不可推算时保留原因"
+        },
+        "total_cost": {
+          "before": 120.44,
+          "after": 365.75,
+          "before_pointer": "/0/Plan/Total Cost",
+          "after_pointer": "/0/Plan/Plans/0/Total Cost",
+          "delta": 245.31,
+          "ratio": 3.036782,
+          "note": "优化器估计单位，不是毫秒"
+        },
+        "buffers_inclusive": {
+          "Shared Hit Blocks": {
+            "before": 29.0,
+            "after": 3006.0,
+            "before_pointer": "/0/Plan/Shared Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Shared Hit Blocks",
+            "delta": 2977.0,
+            "ratio": 103.655172,
+            "note": "含子节点"
+          },
+          "Shared Read Blocks": {
+            "before": 0.0,
+            "after": 5.0,
+            "before_pointer": "/0/Plan/Shared Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Shared Read Blocks",
+            "delta": 5.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Shared Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Shared Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Shared Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Shared Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Shared Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Shared Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Local Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Local Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Local Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Local Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Local Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Local Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Local Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Local Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Temp Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Temp Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Temp Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Temp Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Temp Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Temp Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          }
+        },
+        "buffers_exclusive": {
+          "Shared Hit Blocks": {
+            "before": 3.0,
+            "after": 3.0,
+            "before_pointer": "/0/Plan/Shared Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Shared Hit Blocks",
+            "delta": 0.0,
+            "ratio": 1.0,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Shared Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Shared Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Shared Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Shared Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Shared Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Shared Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Local Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Local Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Local Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Local Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Local Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Local Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Local Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Local Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Temp Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Temp Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Temp Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Temp Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Temp Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Temp Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          }
+        },
+        "buffers_exclusive_status": {
+          "before": "ok",
+          "after": "ok"
+        },
+        "attributes": [
+          {
+            "field": "Sort Space Used",
+            "before": 25,
+            "after": 179,
+            "before_pointer": "/0/Plan/Sort Space Used",
+            "after_pointer": "/0/Plan/Plans/0/Sort Space Used"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c02",
+      "status": "matched",
+      "evidence": [
+        "Aggregate 按分组键 ['c.region', 'p.region'] + 输入表集合 {c,o,p} 对应，两侧均唯一"
+      ],
+      "structural_changes": [
+        "Aggregate 策略变化：Hashed → Sorted",
+        "树中位置变化：before 位于 Sort>Aggregate，after 位于 Aggregate"
+      ],
+      "before": {
+        "pointer": "/0/Plan/Plans/0",
+        "node_type": "Aggregate",
+        "label": "Aggregate[Hashed] group(c.region, p.region)",
+        "context": "Sort>Aggregate",
+        "supported": true,
+        "relation_set": [
+          "c",
+          "o",
+          "p"
+        ]
+      },
+      "after": {
+        "pointer": "/0/Plan",
+        "node_type": "Aggregate",
+        "label": "Aggregate[Sorted] group(c.region, p.region)",
+        "context": "Aggregate",
+        "supported": true,
+        "relation_set": [
+          "c",
+          "o",
+          "p"
+        ]
+      },
+      "metrics": {
+        "convention": "Actual Rows/Actual Total Time 为每次循环值；*_xloops 为乘 Actual Loops 后的合计；父节点数值包含子节点",
+        "plan_rows": {
+          "before": 9.0,
+          "after": 9.0,
+          "before_pointer": "/0/Plan/Plans/0/Plan Rows",
+          "after_pointer": "/0/Plan/Plan Rows",
+          "delta": 0.0,
+          "ratio": 1.0
+        },
+        "actual_rows_per_loop": {
+          "before": 6.0,
+          "after": 6.0,
+          "before_pointer": "/0/Plan/Plans/0/Actual Rows",
+          "after_pointer": "/0/Plan/Actual Rows",
+          "delta": 0.0,
+          "ratio": 1.0
+        },
+        "actual_loops": {
+          "before": 1.0,
+          "after": 1.0,
+          "before_pointer": "/0/Plan/Plans/0/Actual Loops",
+          "after_pointer": "/0/Plan/Actual Loops",
+          "delta": 0.0,
+          "ratio": 1.0
+        },
+        "actual_rows_total_xloops": {
+          "before": 6.0,
+          "after": 6.0,
+          "before_pointer": "/0/Plan/Plans/0/Actual Rows",
+          "after_pointer": "/0/Plan/Actual Rows",
+          "delta": 0.0,
+          "ratio": 1.0,
+          "derived": true,
+          "note": "由 Actual Rows × Actual Loops 推算"
+        },
+        "est_ratio_per_loop": {
+          "before": 0.666667,
+          "after": 0.666667,
+          "before_pointer": "/0/Plan/Plans/0/Plan Rows",
+          "after_pointer": "/0/Plan/Plan Rows",
+          "delta": 0.0,
+          "ratio": 1.0,
+          "derived": true,
+          "note": "每循环 Actual Rows / Plan Rows；>1 表示低估"
+        },
+        "actual_total_time_per_loop_ms": {
+          "before": 3.297,
+          "after": 3.818,
+          "before_pointer": "/0/Plan/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Actual Total Time",
+          "delta": 0.521,
+          "ratio": 1.158022,
+          "note": "含子节点"
+        },
+        "actual_total_time_xloops_ms": {
+          "before": 3.297,
+          "after": 3.818,
+          "before_pointer": "/0/Plan/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Actual Total Time",
+          "delta": 0.521,
+          "ratio": 1.158022,
+          "derived": true,
+          "note": "含子节点；由 Actual Total Time × Actual Loops 推算"
+        },
+        "self_time_xloops_ms": {
+          "before": 0.731,
+          "after": 0.449,
+          "before_pointer": "/0/Plan/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Actual Total Time",
+          "before_status": "ok",
+          "after_status": "ok",
+          "delta": -0.282,
+          "derived": true,
+          "note": "自耗时=自身×Loops总时间−子节点×Loops总时间；不可推算时保留原因"
+        },
+        "total_cost": {
+          "before": 120.27,
+          "after": 387.09,
+          "before_pointer": "/0/Plan/Plans/0/Total Cost",
+          "after_pointer": "/0/Plan/Total Cost",
+          "delta": 266.82,
+          "ratio": 3.218508,
+          "note": "优化器估计单位，不是毫秒"
+        },
+        "buffers_inclusive": {
+          "Shared Hit Blocks": {
+            "before": 26.0,
+            "after": 3006.0,
+            "before_pointer": "/0/Plan/Plans/0/Shared Hit Blocks",
+            "after_pointer": "/0/Plan/Shared Hit Blocks",
+            "delta": 2980.0,
+            "ratio": 115.615385,
+            "note": "含子节点"
+          },
+          "Shared Read Blocks": {
+            "before": 0.0,
+            "after": 5.0,
+            "before_pointer": "/0/Plan/Plans/0/Shared Read Blocks",
+            "after_pointer": "/0/Plan/Shared Read Blocks",
+            "delta": 5.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Shared Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Shared Dirtied Blocks",
+            "after_pointer": "/0/Plan/Shared Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Shared Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Shared Written Blocks",
+            "after_pointer": "/0/Plan/Shared Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Local Hit Blocks",
+            "after_pointer": "/0/Plan/Local Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Local Read Blocks",
+            "after_pointer": "/0/Plan/Local Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Local Dirtied Blocks",
+            "after_pointer": "/0/Plan/Local Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Local Written Blocks",
+            "after_pointer": "/0/Plan/Local Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Temp Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Temp Read Blocks",
+            "after_pointer": "/0/Plan/Temp Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Temp Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Temp Written Blocks",
+            "after_pointer": "/0/Plan/Temp Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          }
+        },
+        "buffers_exclusive": {
+          "Shared Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Shared Hit Blocks",
+            "after_pointer": "/0/Plan/Shared Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Shared Read Blocks",
+            "after_pointer": "/0/Plan/Shared Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Shared Dirtied Blocks",
+            "after_pointer": "/0/Plan/Shared Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Shared Written Blocks",
+            "after_pointer": "/0/Plan/Shared Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Local Hit Blocks",
+            "after_pointer": "/0/Plan/Local Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Local Read Blocks",
+            "after_pointer": "/0/Plan/Local Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Local Dirtied Blocks",
+            "after_pointer": "/0/Plan/Local Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Local Written Blocks",
+            "after_pointer": "/0/Plan/Local Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Temp Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Temp Read Blocks",
+            "after_pointer": "/0/Plan/Temp Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Temp Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Temp Written Blocks",
+            "after_pointer": "/0/Plan/Temp Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          }
+        },
+        "buffers_exclusive_status": {
+          "before": "ok",
+          "after": "ok"
+        },
+        "attributes": [
+          {
+            "field": "Strategy",
+            "before": "Hashed",
+            "after": "Sorted",
+            "before_pointer": "/0/Plan/Plans/0/Strategy",
+            "after_pointer": "/0/Plan/Strategy"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c03",
+      "status": "matched",
+      "evidence": [
+        "连接节点按参与表集合 {c,o,p} 对应，两侧均唯一"
+      ],
+      "structural_changes": [
+        "节点类型变化：Hash Join → Nested Loop",
+        "Inner Unique变化：True → False",
+        "树中位置变化：before 位于 Sort>Aggregate>Hash Join，after 位于 Aggregate>Sort>Nested Loop"
+      ],
+      "before": {
+        "pointer": "/0/Plan/Plans/0/Plans/0",
+        "node_type": "Hash Join",
+        "label": "Hash Join {c,o,p}",
+        "context": "Sort>Aggregate>Hash Join",
+        "supported": true,
+        "relation_set": [
+          "c",
+          "o",
+          "p"
+        ]
+      },
+      "after": {
+        "pointer": "/0/Plan/Plans/0/Plans/0",
+        "node_type": "Nested Loop",
+        "label": "Nested Loop {c,o,p}",
+        "context": "Aggregate>Sort>Nested Loop",
+        "supported": true,
+        "relation_set": [
+          "c",
+          "o",
+          "p"
+        ]
+      },
+      "metrics": {
+        "convention": "Actual Rows/Actual Total Time 为每次循环值；*_xloops 为乘 Actual Loops 后的合计；父节点数值包含子节点",
+        "plan_rows": {
+          "before": 2125.0,
+          "after": 2125.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plan Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plan Rows",
+          "delta": 0.0,
+          "ratio": 1.0
+        },
+        "actual_rows_per_loop": {
+          "before": 2124.0,
+          "after": 2124.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Actual Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Actual Rows",
+          "delta": 0.0,
+          "ratio": 1.0
+        },
+        "actual_loops": {
+          "before": 1.0,
+          "after": 1.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Actual Loops",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Actual Loops",
+          "delta": 0.0,
+          "ratio": 1.0
+        },
+        "actual_rows_total_xloops": {
+          "before": 2124.0,
+          "after": 2124.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Actual Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Actual Rows",
+          "delta": 0.0,
+          "ratio": 1.0,
+          "derived": true,
+          "note": "由 Actual Rows × Actual Loops 推算"
+        },
+        "est_ratio_per_loop": {
+          "before": 0.999529,
+          "after": 0.999529,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plan Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plan Rows",
+          "delta": 0.0,
+          "ratio": 1.0,
+          "derived": true,
+          "note": "每循环 Actual Rows / Plan Rows；>1 表示低估"
+        },
+        "actual_total_time_per_loop_ms": {
+          "before": 2.566,
+          "after": 2.204,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Actual Total Time",
+          "delta": -0.362,
+          "ratio": 0.858924,
+          "note": "含子节点"
+        },
+        "actual_total_time_xloops_ms": {
+          "before": 2.566,
+          "after": 2.204,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Actual Total Time",
+          "delta": -0.362,
+          "ratio": 0.858924,
+          "derived": true,
+          "note": "含子节点；由 Actual Total Time × Actual Loops 推算"
+        },
+        "self_time_xloops_ms": {
+          "before": 0.596,
+          "after": 0.365,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Actual Total Time",
+          "before_status": "ok",
+          "after_status": "ok",
+          "delta": -0.231,
+          "derived": true,
+          "note": "自耗时=自身×Loops总时间−子节点×Loops总时间；不可推算时保留原因"
+        },
+        "total_cost": {
+          "before": 98.93,
+          "after": 242.99,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Total Cost",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Total Cost",
+          "delta": 144.06,
+          "ratio": 2.456181,
+          "note": "优化器估计单位，不是毫秒"
+        },
+        "buffers_inclusive": {
+          "Shared Hit Blocks": {
+            "before": 26.0,
+            "after": 3003.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Shared Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Shared Hit Blocks",
+            "delta": 2977.0,
+            "ratio": 115.5,
+            "note": "含子节点"
+          },
+          "Shared Read Blocks": {
+            "before": 0.0,
+            "after": 5.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Shared Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Shared Read Blocks",
+            "delta": 5.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Shared Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Shared Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Shared Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Shared Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Shared Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Shared Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Local Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Local Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Local Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Local Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Local Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Local Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Local Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Local Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Temp Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Temp Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Temp Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Temp Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Temp Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Temp Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          }
+        },
+        "buffers_exclusive": {
+          "Shared Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Shared Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Shared Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Shared Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Shared Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Shared Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Shared Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Shared Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Shared Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Local Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Local Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Local Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Local Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Local Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Local Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Local Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Local Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Temp Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Temp Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Temp Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Temp Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Temp Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Temp Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          }
+        },
+        "buffers_exclusive_status": {
+          "before": "ok",
+          "after": "ok"
+        },
+        "attributes": [
+          {
+            "field": "Hash Cond",
+            "before": "(c.parent_id = p.id)",
+            "after": null,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Hash Cond",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Hash Cond"
+          },
+          {
+            "field": "Inner Unique",
+            "before": true,
+            "after": false,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Inner Unique",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Inner Unique"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c04",
+      "status": "matched",
+      "evidence": [
+        "扫描节点按 关系=orders 别名=o 对应，两侧均唯一"
+      ],
+      "structural_changes": [
+        "节点类型变化：Seq Scan → Index Scan",
+        "树中位置变化：before 位于 Sort>Aggregate>Hash Join>Hash Join>Seq Scan，after 位于 Aggregate>Sort>Nested Loop>Index Scan"
+      ],
+      "before": {
+        "pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0",
+        "node_type": "Seq Scan",
+        "label": "Seq Scan orders o",
+        "context": "Sort>Aggregate>Hash Join>Hash Join>Seq Scan",
+        "supported": true,
+        "relation_set": [
+          "o"
+        ]
+      },
+      "after": {
+        "pointer": "/0/Plan/Plans/0/Plans/0/Plans/1",
+        "node_type": "Index Scan",
+        "label": "Index Scan orders o",
+        "context": "Aggregate>Sort>Nested Loop>Index Scan",
+        "supported": true,
+        "relation_set": [
+          "o"
+        ]
+      },
+      "metrics": {
+        "convention": "Actual Rows/Actual Total Time 为每次循环值；*_xloops 为乘 Actual Loops 后的合计；父节点数值包含子节点",
+        "plan_rows": {
+          "before": 3196.0,
+          "after": 16.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Plan Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plan Rows",
+          "delta": -3180.0,
+          "ratio": 0.005006
+        },
+        "actual_rows_per_loop": {
+          "before": 3196.0,
+          "after": 16.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Actual Rows",
+          "delta": -3180.0,
+          "ratio": 0.005006
+        },
+        "actual_loops": {
+          "before": 1.0,
+          "after": 133.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Loops",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Actual Loops",
+          "delta": 132.0,
+          "ratio": 133.0
+        },
+        "actual_rows_total_xloops": {
+          "before": 3196.0,
+          "after": 2128.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Actual Rows",
+          "delta": -1068.0,
+          "ratio": 0.665832,
+          "derived": true,
+          "note": "由 Actual Rows × Actual Loops 推算"
+        },
+        "est_ratio_per_loop": {
+          "before": 1.0,
+          "after": 1.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Plan Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plan Rows",
+          "delta": 0.0,
+          "ratio": 1.0,
+          "derived": true,
+          "note": "每循环 Actual Rows / Plan Rows；>1 表示低估"
+        },
+        "actual_total_time_per_loop_ms": {
+          "before": 0.91,
+          "after": 0.012,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Actual Total Time",
+          "delta": -0.898,
+          "ratio": 0.013187,
+          "note": "含子节点"
+        },
+        "actual_total_time_xloops_ms": {
+          "before": 0.91,
+          "after": 1.596,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Actual Total Time",
+          "delta": 0.686,
+          "ratio": 1.753846,
+          "derived": true,
+          "note": "含子节点；由 Actual Total Time × Actual Loops 推算"
+        },
+        "self_time_xloops_ms": {
+          "before": 0.91,
+          "after": 1.596,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Actual Total Time",
+          "before_status": "ok",
+          "after_status": "ok",
+          "delta": 0.686,
+          "derived": true,
+          "note": "自耗时=自身×Loops总时间−子节点×Loops总时间；不可推算时保留原因"
+        },
+        "total_cost": {
+          "before": 72.0,
+          "after": 1.52,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Total Cost",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Total Cost",
+          "delta": -70.48,
+          "ratio": 0.021111,
+          "note": "优化器估计单位，不是毫秒"
+        },
+        "buffers_inclusive": {
+          "Shared Hit Blocks": {
+            "before": 22.0,
+            "after": 2921.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Shared Hit Blocks",
+            "delta": 2899.0,
+            "ratio": 132.772727,
+            "note": "含子节点"
+          },
+          "Shared Read Blocks": {
+            "before": 0.0,
+            "after": 5.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Shared Read Blocks",
+            "delta": 5.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Shared Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Shared Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Shared Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Shared Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Local Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Local Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Local Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Local Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Temp Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Temp Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Temp Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Temp Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Temp Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Temp Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          }
+        },
+        "buffers_exclusive": {
+          "Shared Hit Blocks": {
+            "before": 22.0,
+            "after": 2921.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Shared Hit Blocks",
+            "delta": 2899.0,
+            "ratio": 132.772727,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Read Blocks": {
+            "before": 0.0,
+            "after": 5.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Shared Read Blocks",
+            "delta": 5.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Shared Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Shared Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Local Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Local Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Local Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Local Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Temp Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Temp Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Temp Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Temp Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Temp Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Temp Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          }
+        },
+        "buffers_exclusive_status": {
+          "before": "ok",
+          "after": "ok"
+        },
+        "attributes": [
+          {
+            "field": "Rows Removed by Filter",
+            "before": 804,
+            "after": 4,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Rows Removed by Filter",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Rows Removed by Filter"
+          },
+          {
+            "field": "Index Name",
+            "before": null,
+            "after": "orders_customer_idx",
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Index Name",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Index Name"
+          },
+          {
+            "field": "Index Cond",
+            "before": null,
+            "after": "(customer_id = c.id)",
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Index Cond",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Index Cond"
+          },
+          {
+            "field": "Rows Removed by Index Recheck",
+            "before": null,
+            "after": 0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Rows Removed by Index Recheck",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Rows Removed by Index Recheck"
+          },
+          {
+            "field": "Scan Direction",
+            "before": null,
+            "after": "Forward",
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Scan Direction",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Scan Direction"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c05",
+      "status": "matched",
+      "evidence": [
+        "扫描节点按 关系=customers 别名=c 对应，两侧均唯一"
+      ],
+      "structural_changes": [
+        "树中位置变化：before 位于 Sort>Aggregate>Hash Join>Hash Join>Hash>Seq Scan，after 位于 Aggregate>Sort>Nested Loop>Nested Loop>Seq Scan"
+      ],
+      "before": {
+        "pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0",
+        "node_type": "Seq Scan",
+        "label": "Seq Scan customers c",
+        "context": "Sort>Aggregate>Hash Join>Hash Join>Hash>Seq Scan",
+        "supported": true,
+        "relation_set": [
+          "c"
+        ]
+      },
+      "after": {
+        "pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0",
+        "node_type": "Seq Scan",
+        "label": "Seq Scan customers c",
+        "context": "Aggregate>Sort>Nested Loop>Nested Loop>Seq Scan",
+        "supported": true,
+        "relation_set": [
+          "c"
+        ]
+      },
+      "metrics": {
+        "convention": "Actual Rows/Actual Total Time 为每次循环值；*_xloops 为乘 Actual Loops 后的合计；父节点数值包含子节点",
+        "plan_rows": {
+          "before": 133.0,
+          "after": 133.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Plan Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Plan Rows",
+          "delta": 0.0,
+          "ratio": 1.0
+        },
+        "actual_rows_per_loop": {
+          "before": 133.0,
+          "after": 133.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Actual Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Rows",
+          "delta": 0.0,
+          "ratio": 1.0
+        },
+        "actual_loops": {
+          "before": 1.0,
+          "after": 1.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Actual Loops",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Loops",
+          "delta": 0.0,
+          "ratio": 1.0
+        },
+        "actual_rows_total_xloops": {
+          "before": 133.0,
+          "after": 133.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Actual Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Rows",
+          "delta": 0.0,
+          "ratio": 1.0,
+          "derived": true,
+          "note": "由 Actual Rows × Actual Loops 推算"
+        },
+        "est_ratio_per_loop": {
+          "before": 1.0,
+          "after": 1.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Plan Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Plan Rows",
+          "delta": 0.0,
+          "ratio": 1.0,
+          "derived": true,
+          "note": "每循环 Actual Rows / Plan Rows；>1 表示低估"
+        },
+        "actual_total_time_per_loop_ms": {
+          "before": 0.061,
+          "after": 0.058,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Total Time",
+          "delta": -0.003,
+          "ratio": 0.95082,
+          "note": "含子节点"
+        },
+        "actual_total_time_xloops_ms": {
+          "before": 0.061,
+          "after": 0.058,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Total Time",
+          "delta": -0.003,
+          "ratio": 0.95082,
+          "derived": true,
+          "note": "含子节点；由 Actual Total Time × Actual Loops 推算"
+        },
+        "self_time_xloops_ms": {
+          "before": 0.061,
+          "after": 0.058,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Total Time",
+          "before_status": "ok",
+          "after_status": "ok",
+          "delta": -0.003,
+          "derived": true,
+          "note": "自耗时=自身×Loops总时间−子节点×Loops总时间；不可推算时保留原因"
+        },
+        "total_cost": {
+          "before": 4.5,
+          "after": 4.5,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Total Cost",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Total Cost",
+          "delta": 0.0,
+          "ratio": 1.0,
+          "note": "优化器估计单位，不是毫秒"
+        },
+        "buffers_inclusive": {
+          "Shared Hit Blocks": {
+            "before": 2.0,
+            "after": 2.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Hit Blocks",
+            "delta": 0.0,
+            "ratio": 1.0,
+            "note": "含子节点"
+          },
+          "Shared Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Shared Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Shared Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Temp Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Temp Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Temp Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Temp Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Temp Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Temp Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          }
+        },
+        "buffers_exclusive": {
+          "Shared Hit Blocks": {
+            "before": 2.0,
+            "after": 2.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Hit Blocks",
+            "delta": 0.0,
+            "ratio": 1.0,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Local Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Temp Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Temp Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Temp Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Temp Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Temp Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Temp Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          }
+        },
+        "buffers_exclusive_status": {
+          "before": "ok",
+          "after": "ok"
+        },
+        "attributes": []
+      }
+    },
+    {
+      "id": "c06",
+      "status": "matched",
+      "evidence": [
+        "扫描节点按 关系=customers 别名=p 对应，两侧均唯一"
+      ],
+      "structural_changes": [
+        "节点类型变化：Seq Scan → Index Scan",
+        "树中位置变化：before 位于 Sort>Aggregate>Hash Join>Hash>Seq Scan，after 位于 Aggregate>Sort>Nested Loop>Nested Loop>Memoize>Index Scan"
+      ],
+      "before": {
+        "pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0",
+        "node_type": "Seq Scan",
+        "label": "Seq Scan customers p",
+        "context": "Sort>Aggregate>Hash Join>Hash>Seq Scan",
+        "supported": true,
+        "relation_set": [
+          "p"
+        ]
+      },
+      "after": {
+        "pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0",
+        "node_type": "Index Scan",
+        "label": "Index Scan customers p",
+        "context": "Aggregate>Sort>Nested Loop>Nested Loop>Memoize>Index Scan",
+        "supported": true,
+        "relation_set": [
+          "p"
+        ]
+      },
+      "metrics": {
+        "convention": "Actual Rows/Actual Total Time 为每次循环值；*_xloops 为乘 Actual Loops 后的合计；父节点数值包含子节点",
+        "plan_rows": {
+          "before": 200.0,
+          "after": 1.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Plan Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Plan Rows",
+          "delta": -199.0,
+          "ratio": 0.005
+        },
+        "actual_rows_per_loop": {
+          "before": 200.0,
+          "after": 1.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Actual Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Actual Rows",
+          "delta": -199.0,
+          "ratio": 0.005
+        },
+        "actual_loops": {
+          "before": 1.0,
+          "after": 40.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Actual Loops",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Actual Loops",
+          "delta": 39.0,
+          "ratio": 40.0
+        },
+        "actual_rows_total_xloops": {
+          "before": 200.0,
+          "after": 40.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Actual Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Actual Rows",
+          "delta": -160.0,
+          "ratio": 0.2,
+          "derived": true,
+          "note": "由 Actual Rows × Actual Loops 推算"
+        },
+        "est_ratio_per_loop": {
+          "before": 1.0,
+          "after": 1.0,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Plan Rows",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Plan Rows",
+          "delta": 0.0,
+          "ratio": 1.0,
+          "derived": true,
+          "note": "每循环 Actual Rows / Plan Rows；>1 表示低估"
+        },
+        "actual_total_time_per_loop_ms": {
+          "before": 0.089,
+          "after": 0.001,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Actual Total Time",
+          "delta": -0.088,
+          "ratio": 0.011236,
+          "note": "含子节点"
+        },
+        "actual_total_time_xloops_ms": {
+          "before": 0.089,
+          "after": 0.04,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Actual Total Time",
+          "delta": -0.049,
+          "ratio": 0.449438,
+          "derived": true,
+          "note": "含子节点；由 Actual Total Time × Actual Loops 推算"
+        },
+        "self_time_xloops_ms": {
+          "before": 0.089,
+          "after": 0.04,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Actual Total Time",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Actual Total Time",
+          "before_status": "ok",
+          "after_status": "ok",
+          "delta": -0.049,
+          "derived": true,
+          "note": "自耗时=自身×Loops总时间−子节点×Loops总时间；不可推算时保留原因"
+        },
+        "total_cost": {
+          "before": 4.0,
+          "after": 0.28,
+          "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Total Cost",
+          "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Total Cost",
+          "delta": -3.72,
+          "ratio": 0.07,
+          "note": "优化器估计单位，不是毫秒"
+        },
+        "buffers_inclusive": {
+          "Shared Hit Blocks": {
+            "before": 2.0,
+            "after": 80.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Shared Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Hit Blocks",
+            "delta": 78.0,
+            "ratio": 40.0,
+            "note": "含子节点"
+          },
+          "Shared Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Shared Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Shared Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Shared Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Shared Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Shared Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Local Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Local Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Local Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Local Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Local Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Temp Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Temp Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Temp Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          },
+          "Temp Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Temp Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Temp Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "note": "含子节点"
+          }
+        },
+        "buffers_exclusive": {
+          "Shared Hit Blocks": {
+            "before": 2.0,
+            "after": 80.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Shared Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Hit Blocks",
+            "delta": 78.0,
+            "ratio": 40.0,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Shared Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Shared Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Shared Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Shared Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Shared Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Hit Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Local Hit Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Hit Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Local Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Dirtied Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Local Dirtied Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Dirtied Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Local Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Local Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Local Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Temp Read Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Temp Read Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Temp Read Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          },
+          "Temp Written Blocks": {
+            "before": 0.0,
+            "after": 0.0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Temp Written Blocks",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Temp Written Blocks",
+            "delta": 0.0,
+            "ratio": null,
+            "derived": true,
+            "note": "推算：自身−子节点"
+          }
+        },
+        "buffers_exclusive_status": {
+          "before": "ok",
+          "after": "ok"
+        },
+        "attributes": [
+          {
+            "field": "Index Name",
+            "before": null,
+            "after": "customers_pkey",
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Index Name",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Index Name"
+          },
+          {
+            "field": "Index Cond",
+            "before": null,
+            "after": "(id = c.parent_id)",
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Index Cond",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Index Cond"
+          },
+          {
+            "field": "Rows Removed by Index Recheck",
+            "before": null,
+            "after": 0,
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Rows Removed by Index Recheck",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Rows Removed by Index Recheck"
+          },
+          {
+            "field": "Scan Direction",
+            "before": null,
+            "after": "Forward",
+            "before_pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Scan Direction",
+            "after_pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Scan Direction"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c07",
+      "status": "removed",
+      "evidence": [
+        "after 中不存在相同签名的节点（join 参与表={c,o}）"
+      ],
+      "structural_changes": [],
+      "before": {
+        "pointer": "/0/Plan/Plans/0/Plans/0/Plans/0",
+        "node_type": "Hash Join",
+        "label": "Hash Join {c,o}",
+        "context": "Sort>Aggregate>Hash Join>Hash Join",
+        "supported": true,
+        "relation_set": [
+          "c",
+          "o"
+        ]
+      },
+      "after": null,
+      "metrics": {
+        "executed": true,
+        "plan_rows": 2125.0,
+        "actual_rows_per_loop": 2124.0,
+        "actual_loops": 1.0,
+        "actual_rows_total_xloops": 2124.0,
+        "est_ratio_per_loop": 0.999529,
+        "actual_total_time_per_loop_ms": 1.829,
+        "actual_total_time_xloops_ms": 1.829,
+        "self_time_xloops_ms": 0.794,
+        "self_time_status": "ok",
+        "startup_time_ms": 0.159,
+        "total_cost": 86.73,
+        "buffers_inclusive": {
+          "Shared Hit Blocks": 24.0,
+          "Shared Read Blocks": 0.0,
+          "Shared Dirtied Blocks": 0.0,
+          "Shared Written Blocks": 0.0,
+          "Local Hit Blocks": 0.0,
+          "Local Read Blocks": 0.0,
+          "Local Dirtied Blocks": 0.0,
+          "Local Written Blocks": 0.0,
+          "Temp Read Blocks": 0.0,
+          "Temp Written Blocks": 0.0
+        },
+        "buffers_exclusive": {
+          "Shared Hit Blocks": 0.0,
+          "Shared Read Blocks": 0.0,
+          "Shared Dirtied Blocks": 0.0,
+          "Shared Written Blocks": 0.0,
+          "Local Hit Blocks": 0.0,
+          "Local Read Blocks": 0.0,
+          "Local Dirtied Blocks": 0.0,
+          "Local Written Blocks": 0.0,
+          "Temp Read Blocks": 0.0,
+          "Temp Written Blocks": 0.0
+        },
+        "buffers_exclusive_status": "ok"
+      }
+    },
+    {
+      "id": "c08",
+      "status": "removed",
+      "evidence": [
+        "after 中不存在相同签名的节点（Hash 输入表={c}）"
+      ],
+      "structural_changes": [],
+      "before": {
+        "pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1",
+        "node_type": "Hash",
+        "label": "Hash {c}",
+        "context": "Sort>Aggregate>Hash Join>Hash Join>Hash",
+        "supported": true,
+        "relation_set": [
+          "c"
+        ]
+      },
+      "after": null,
+      "metrics": {
+        "executed": true,
+        "plan_rows": 133.0,
+        "actual_rows_per_loop": 133.0,
+        "actual_loops": 1.0,
+        "actual_rows_total_xloops": 133.0,
+        "est_ratio_per_loop": 1.0,
+        "actual_total_time_per_loop_ms": 0.125,
+        "actual_total_time_xloops_ms": 0.125,
+        "self_time_xloops_ms": 0.064,
+        "self_time_status": "ok",
+        "startup_time_ms": 0.123,
+        "total_cost": 4.5,
+        "buffers_inclusive": {
+          "Shared Hit Blocks": 2.0,
+          "Shared Read Blocks": 0.0,
+          "Shared Dirtied Blocks": 0.0,
+          "Shared Written Blocks": 0.0,
+          "Local Hit Blocks": 0.0,
+          "Local Read Blocks": 0.0,
+          "Local Dirtied Blocks": 0.0,
+          "Local Written Blocks": 0.0,
+          "Temp Read Blocks": 0.0,
+          "Temp Written Blocks": 0.0
+        },
+        "buffers_exclusive": {
+          "Shared Hit Blocks": 0.0,
+          "Shared Read Blocks": 0.0,
+          "Shared Dirtied Blocks": 0.0,
+          "Shared Written Blocks": 0.0,
+          "Local Hit Blocks": 0.0,
+          "Local Read Blocks": 0.0,
+          "Local Dirtied Blocks": 0.0,
+          "Local Written Blocks": 0.0,
+          "Temp Read Blocks": 0.0,
+          "Temp Written Blocks": 0.0
+        },
+        "buffers_exclusive_status": "ok"
+      }
+    },
+    {
+      "id": "c09",
+      "status": "removed",
+      "evidence": [
+        "after 中不存在相同签名的节点（Hash 输入表={p}）"
+      ],
+      "structural_changes": [],
+      "before": {
+        "pointer": "/0/Plan/Plans/0/Plans/0/Plans/1",
+        "node_type": "Hash",
+        "label": "Hash {p}",
+        "context": "Sort>Aggregate>Hash Join>Hash",
+        "supported": true,
+        "relation_set": [
+          "p"
+        ]
+      },
+      "after": null,
+      "metrics": {
+        "executed": true,
+        "plan_rows": 200.0,
+        "actual_rows_per_loop": 200.0,
+        "actual_loops": 1.0,
+        "actual_rows_total_xloops": 200.0,
+        "est_ratio_per_loop": 1.0,
+        "actual_total_time_per_loop_ms": 0.141,
+        "actual_total_time_xloops_ms": 0.141,
+        "self_time_xloops_ms": 0.052,
+        "self_time_status": "ok",
+        "startup_time_ms": 0.14,
+        "total_cost": 4.0,
+        "buffers_inclusive": {
+          "Shared Hit Blocks": 2.0,
+          "Shared Read Blocks": 0.0,
+          "Shared Dirtied Blocks": 0.0,
+          "Shared Written Blocks": 0.0,
+          "Local Hit Blocks": 0.0,
+          "Local Read Blocks": 0.0,
+          "Local Dirtied Blocks": 0.0,
+          "Local Written Blocks": 0.0,
+          "Temp Read Blocks": 0.0,
+          "Temp Written Blocks": 0.0
+        },
+        "buffers_exclusive": {
+          "Shared Hit Blocks": 0.0,
+          "Shared Read Blocks": 0.0,
+          "Shared Dirtied Blocks": 0.0,
+          "Shared Written Blocks": 0.0,
+          "Local Hit Blocks": 0.0,
+          "Local Read Blocks": 0.0,
+          "Local Dirtied Blocks": 0.0,
+          "Local Written Blocks": 0.0,
+          "Temp Read Blocks": 0.0,
+          "Temp Written Blocks": 0.0
+        },
+        "buffers_exclusive_status": "ok"
+      }
+    },
+    {
+      "id": "c10",
+      "status": "added",
+      "evidence": [
+        "before 中不存在相同签名的节点（join 参与表={c,p}）"
+      ],
+      "structural_changes": [],
+      "before": null,
+      "after": {
+        "pointer": "/0/Plan/Plans/0/Plans/0/Plans/0",
+        "node_type": "Nested Loop",
+        "label": "Nested Loop {c,p}",
+        "context": "Aggregate>Sort>Nested Loop>Nested Loop",
+        "supported": true,
+        "relation_set": [
+          "c",
+          "p"
+        ]
+      },
+      "metrics": {
+        "executed": true,
+        "plan_rows": 133.0,
+        "actual_rows_per_loop": 133.0,
+        "actual_loops": 1.0,
+        "actual_rows_total_xloops": 133.0,
+        "est_ratio_per_loop": 1.0,
+        "actual_total_time_per_loop_ms": 0.243,
+        "actual_total_time_xloops_ms": 0.243,
+        "self_time_xloops_ms": 0.052,
+        "self_time_status": "ok",
+        "startup_time_ms": 0.029,
+        "total_cost": 19.27,
+        "buffers_inclusive": {
+          "Shared Hit Blocks": 82.0,
+          "Shared Read Blocks": 0.0,
+          "Shared Dirtied Blocks": 0.0,
+          "Shared Written Blocks": 0.0,
+          "Local Hit Blocks": 0.0,
+          "Local Read Blocks": 0.0,
+          "Local Dirtied Blocks": 0.0,
+          "Local Written Blocks": 0.0,
+          "Temp Read Blocks": 0.0,
+          "Temp Written Blocks": 0.0
+        },
+        "buffers_exclusive": {
+          "Shared Hit Blocks": 0.0,
+          "Shared Read Blocks": 0.0,
+          "Shared Dirtied Blocks": 0.0,
+          "Shared Written Blocks": 0.0,
+          "Local Hit Blocks": 0.0,
+          "Local Read Blocks": 0.0,
+          "Local Dirtied Blocks": 0.0,
+          "Local Written Blocks": 0.0,
+          "Temp Read Blocks": 0.0,
+          "Temp Written Blocks": 0.0
+        },
+        "buffers_exclusive_status": "ok"
+      }
+    },
+    {
+      "id": "c11",
+      "status": "added",
+      "evidence": [
+        "before 中不存在相同签名的节点（节点类型 Memoize（不在支持集内，仅按父上下文匹配））"
+      ],
+      "structural_changes": [],
+      "before": null,
+      "after": {
+        "pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1",
+        "node_type": "Memoize",
+        "label": "Memoize (unsupported)",
+        "context": "Aggregate>Sort>Nested Loop>Nested Loop>Memoize",
+        "supported": false,
+        "relation_set": [
+          "p"
+        ]
+      },
+      "metrics": {
+        "executed": true,
+        "plan_rows": 1.0,
+        "actual_rows_per_loop": 1.0,
+        "actual_loops": 133.0,
+        "actual_rows_total_xloops": 133.0,
+        "est_ratio_per_loop": 1.0,
+        "actual_total_time_per_loop_ms": 0.001,
+        "actual_total_time_xloops_ms": 0.133,
+        "self_time_xloops_ms": 0.093,
+        "self_time_status": "ok",
+        "startup_time_ms": 0.001,
+        "total_cost": 0.29,
+        "buffers_inclusive": {
+          "Shared Hit Blocks": 80.0,
+          "Shared Read Blocks": 0.0,
+          "Shared Dirtied Blocks": 0.0,
+          "Shared Written Blocks": 0.0,
+          "Local Hit Blocks": 0.0,
+          "Local Read Blocks": 0.0,
+          "Local Dirtied Blocks": 0.0,
+          "Local Written Blocks": 0.0,
+          "Temp Read Blocks": 0.0,
+          "Temp Written Blocks": 0.0
+        },
+        "buffers_exclusive": {
+          "Shared Hit Blocks": 0.0,
+          "Shared Read Blocks": 0.0,
+          "Shared Dirtied Blocks": 0.0,
+          "Shared Written Blocks": 0.0,
+          "Local Hit Blocks": 0.0,
+          "Local Read Blocks": 0.0,
+          "Local Dirtied Blocks": 0.0,
+          "Local Written Blocks": 0.0,
+          "Temp Read Blocks": 0.0,
+          "Temp Written Blocks": 0.0
+        },
+        "buffers_exclusive_status": "ok"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "text": "结果行数（根节点 ×Loops）：6 → 6，结果集行数一致",
+      "evidence": [
+        {
+          "pointer": "/0/Plan/Actual Rows",
+          "value": 6.0
+        },
+        {
+          "pointer": "/0/Plan/Actual Rows",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "text": "Execution Time：3.537 ms → 3.936 ms（+0.399 ms（+11.3%））；单次运行，仅作观测",
+      "evidence": [
+        {
+          "pointer": "/0/Execution Time",
+          "value": 3.537
+        },
+        {
+          "pointer": "/0/Execution Time",
+          "value": 3.936
+        }
+      ]
+    },
+    {
+      "text": "Planning Time：82.01 ms → 0.758 ms（-81.252 ms）",
+      "evidence": [
+        {
+          "pointer": "/0/Planning Time",
+          "value": 82.01
+        },
+        {
+          "pointer": "/0/Planning Time",
+          "value": 0.758
+        }
+      ]
+    },
+    {
+      "text": "节点对应：6 对对应（其中 3 对节点类型变化），2 个新增，3 个消失，0 组无法唯一对应",
+      "evidence": []
+    },
+    {
+      "text": "Seq Scan orders o：Actual Loops 1 → 133",
+      "evidence": [
+        {
+          "pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Loops",
+          "value": 1.0
+        },
+        {
+          "pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Actual Loops",
+          "value": 133.0
+        }
+      ]
+    },
+    {
+      "text": "Seq Scan orders o：Shared Read Blocks（仅自身，推算）0 → 5",
+      "evidence": [
+        {
+          "pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Shared Read Blocks",
+          "value": 0.0
+        },
+        {
+          "pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Shared Read Blocks",
+          "value": 5.0
+        }
+      ]
+    },
+    {
+      "text": "Seq Scan customers p：Actual Loops 1 → 40",
+      "evidence": [
+        {
+          "pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Plans/0/Actual Loops",
+          "value": 1.0
+        },
+        {
+          "pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1/Plans/0/Actual Loops",
+          "value": 40.0
+        }
+      ]
+    },
+    {
+      "text": "自耗时（推算）增加：Sort key(c.region, p.region) → Sort key(c.region, p.region) 0.103 ms → 1.165 ms（+1.062 ms）；该对节点存在树中位置变化，口径需谨慎",
+      "evidence": [
+        {
+          "pointer": "/0/Plan/Actual Total Time",
+          "value": 3.4
+        },
+        {
+          "pointer": "/0/Plan/Plans/0/Actual Total Time",
+          "value": 3.369
+        }
+      ]
+    },
+    {
+      "text": "自耗时（推算）增加：Seq Scan orders o → Index Scan orders o 0.91 ms → 1.596 ms（+0.686 ms）；该对节点存在树中位置变化，口径需谨慎",
+      "evidence": [
+        {
+          "pointer": "/0/Plan/Plans/0/Plans/0/Plans/0/Plans/0/Actual Total Time",
+          "value": 0.91
+        },
+        {
+          "pointer": "/0/Plan/Plans/0/Plans/0/Plans/1/Actual Total Time",
+          "value": 1.596
+        }
+      ]
+    }
+  ],
+  "possible_explanations": [
+    "两次采集的执行设置不同（before: 'SET max_parallel_workers_per_gather=0; SET jit=off; SET enable_nestloop=off; SET enable_mergejoin=off; SET enable_hashjoin=on; SET enable_hashagg=on;'；after: 'SET max_parallel_workers_per_gather=0; SET jit=off; SET enable_nestloop=on; SET enable_mergejoin=off; SET enable_hashjoin=off; SET enable_hashagg=off;'）：计划结构差异可能由设置驱动，需人工确认",
+    "本工具不判断因果；以上仅为待人工核实的假设"
+  ],
+  "limitations": [
+    "Actual Rows / Actual Total Time 为每次循环值；报告以 ×Loops 标注合计",
+    "父节点时间与缓冲包含子节点；总耗时只取根节点 / Execution Time，未将各节点时间相加",
+    "自耗时为推算值（自身×Loops − 子节点×Loops）；字段缺失、节点未执行或存在并行 Worker 时不推算并保留原因",
+    "Total Cost 为优化器估计单位，不能当作毫秒",
+    "本工具离线分析两份计划文件，不连接数据库、不推荐索引、不改写 SQL",
+    "after 含未知边界节点（不做类型特定解释）：Memoize(/0/Plan/Plans/0/Plans/0/Plans/0/Plans/1)"
+  ]
+}
