@@ -1,0 +1,9 @@
+{
+  "xmin": 0.0,
+  "ymin": 0.0,
+  "xmax": 60.0,
+  "ymax": 40.0,
+  "resolution": 1.0,
+  "max_support_radius": 3.0,
+  "units": "m"
+}
