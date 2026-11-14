@@ -1,0 +1,7 @@
+variant_id,chrom,pos,ref,alt,kind,key
+V1,chr1,5,CA,C,deletion,chr1:5:CA>C
+V2,chr1,22,A,G,snv,chr1:22:A>G
+V3,chr1,22,A,T,snv,chr1:22:A>T
+V4,chr1,23,C,T,snv,chr1:23:C>T
+V5,chr1,24,G,A,snv,chr1:24:G>A
+V6,chr1,26,A,C,snv,chr1:26:A>C

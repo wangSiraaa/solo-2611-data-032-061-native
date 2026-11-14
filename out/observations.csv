@@ -1,0 +1,13 @@
+variant_id,sample,state,gt,filter,sources
+V1,A,alt_carrier,0/1,PASS,fixtures/sample-a.vcf:6#A
+V1,B,alt_carrier,1|1,PASS,fixtures/sample-b.vcf:6#B
+V2,A,hom_ref,0/0,PASS,fixtures/sample-a.vcf:7#A
+V2,B,missing,./.,PASS,fixtures/sample-b.vcf:7#B
+V3,A,absent,,,
+V3,B,alt_carrier,0/1,PASS,fixtures/sample-b.vcf:8#B
+V4,A,partial_missing,./1,PASS,fixtures/sample-a.vcf:8#A
+V4,B,absent,,,
+V5,A,absent,,,
+V5,B,alt_carrier,0/1,PASS,fixtures/sample-b.vcf:9#B
+V6,A,filtered,1/1,LowQ,fixtures/sample-a.vcf:9#A
+V6,B,absent,,,

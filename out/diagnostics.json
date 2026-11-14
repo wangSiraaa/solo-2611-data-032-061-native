@@ -1,0 +1,82 @@
+{
+  "reference": {
+    "path": "fixtures/reference.fa",
+    "sha256": "10b2e3b7f5f53ff81a6d390e56074db919ff5f34cb9966997be47d4f735c758e",
+    "contigs": [
+      {
+        "name": "chr1",
+        "length": 33,
+        "sha256": "5c2b03fa1bfdb54c5ca13d6a82189e6aaf2aeed4b6e36dcf90407d65ed69b9ad"
+      }
+    ]
+  },
+  "support": {
+    "alt_alleles": 1,
+    "variant_kinds": [
+      "snv",
+      "insertion",
+      "deletion"
+    ],
+    "max_indel_len": 50,
+    "ploidy": 2,
+    "format_fields": [
+      "GT"
+    ],
+    "filter": "PASS or '.' (pass) vs any other single value (rejected)",
+    "observation_states": [
+      "hom_ref",
+      "alt_carrier",
+      "partial_missing",
+      "missing",
+      "filtered",
+      "absent",
+      "conflict"
+    ]
+  },
+  "samples": [
+    "A",
+    "B"
+  ],
+  "inputs": [
+    {
+      "path": "fixtures/sample-a.vcf",
+      "samples": [
+        "A"
+      ],
+      "records_total": 4,
+      "records_accepted": 4,
+      "records_rejected": 0
+    },
+    {
+      "path": "fixtures/sample-b.vcf",
+      "samples": [
+        "B"
+      ],
+      "records_total": 4,
+      "records_accepted": 4,
+      "records_rejected": 0
+    }
+  ],
+  "errors": [],
+  "unsupported": [],
+  "conflicts": [],
+  "summary": {
+    "variants": 6,
+    "samples": 2,
+    "observations": 12,
+    "observations_by_state": {
+      "absent": 4,
+      "alt_carrier": 4,
+      "filtered": 1,
+      "hom_ref": 1,
+      "missing": 1,
+      "partial_missing": 1
+    },
+    "records_total": 8,
+    "records_accepted": 8,
+    "records_rejected": 0,
+    "errors": 0,
+    "unsupported": 0,
+    "conflicts": 0
+  }
+}
