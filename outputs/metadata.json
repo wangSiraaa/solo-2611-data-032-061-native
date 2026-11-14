@@ -1,0 +1,75 @@
+{
+  "raster": {
+    "path": "fixtures/surface.tif",
+    "crs": "EPSG:3857",
+    "transform": [
+      8.0,
+      2.0,
+      1000.0,
+      1.0,
+      -8.0,
+      2400.0
+    ],
+    "width": 64,
+    "height": 48,
+    "nodata": -9999.0
+  },
+  "queries": {
+    "with-hole": {
+      "window": {
+        "row_off": 4,
+        "col_off": 3,
+        "height": 26,
+        "width": 29
+      },
+      "shape": [
+        26,
+        29
+      ],
+      "transform": [
+        8.0,
+        2.0,
+        1032.0,
+        1.0,
+        -8.0,
+        2371.0
+      ],
+      "crs": "EPSG:3857",
+      "nodata": -9999.0,
+      "arrays": {
+        "data": "with-hole_data.npy",
+        "mask": "with-hole_mask.npy"
+      },
+      "mask_semantics": "True = pixel centre selected by polygon and value valid (participates in stats)",
+      "pixel_placement": "array[i, j] = source pixel (row_off + i, col_off + j)"
+    },
+    "partial": {
+      "window": {
+        "row_off": 0,
+        "col_off": 0,
+        "height": 9,
+        "width": 9
+      },
+      "shape": [
+        9,
+        9
+      ],
+      "transform": [
+        8.0,
+        2.0,
+        1000.0,
+        1.0,
+        -8.0,
+        2400.0
+      ],
+      "crs": "EPSG:3857",
+      "nodata": -9999.0,
+      "arrays": {
+        "data": "partial_data.npy",
+        "mask": "partial_mask.npy"
+      },
+      "mask_semantics": "True = pixel centre selected by polygon and value valid (participates in stats)",
+      "pixel_placement": "array[i, j] = source pixel (row_off + i, col_off + j)"
+    }
+  }
+}

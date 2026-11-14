@@ -1,0 +1,156 @@
+{
+  "raster": "fixtures/surface.tif",
+  "regions": "fixtures/regions.geojson",
+  "crs": "EPSG:3857",
+  "width": 64,
+  "height": 48,
+  "dtype": "float32",
+  "nodata": -9999.0,
+  "transform": [
+    8.0,
+    2.0,
+    1000.0,
+    1.0,
+    -8.0,
+    2400.0
+  ],
+  "config": {
+    "max_read_pixels": 128,
+    "crs": "EPSG:3857"
+  },
+  "max_read_pixels": 128,
+  "selection_rule": "pixel centre inside polygon or on outer boundary; hole interiors and hole boundaries excluded",
+  "validity_rule": "file mask != 0 and value is not NaN and value != nodata; real 0.0 values are valid",
+  "mean_relative_tolerance": 1e-06,
+  "queries": [
+    {
+      "region_id": "with-hole",
+      "status": "ok",
+      "clipped_by_raster_edge": false,
+      "stats": {
+        "count": 691,
+        "min": 0.0,
+        "max": 17.240007400512695,
+        "mean": 10.27379047577357
+      },
+      "coverage": {
+        "selected_cells": 706,
+        "valid_cells": 691,
+        "fraction": 0.9787535410764873
+      },
+      "window": {
+        "row_off": 4,
+        "col_off": 3,
+        "height": 26,
+        "width": 29
+      },
+      "read_windows": [
+        {
+          "row_off": 4,
+          "col_off": 3,
+          "height": 4,
+          "width": 29,
+          "pixels": 116
+        },
+        {
+          "row_off": 8,
+          "col_off": 3,
+          "height": 4,
+          "width": 29,
+          "pixels": 116
+        },
+        {
+          "row_off": 12,
+          "col_off": 3,
+          "height": 4,
+          "width": 29,
+          "pixels": 116
+        },
+        {
+          "row_off": 16,
+          "col_off": 3,
+          "height": 4,
+          "width": 29,
+          "pixels": 116
+        },
+        {
+          "row_off": 20,
+          "col_off": 3,
+          "height": 4,
+          "width": 29,
+          "pixels": 116
+        },
+        {
+          "row_off": 24,
+          "col_off": 3,
+          "height": 4,
+          "width": 29,
+          "pixels": 116
+        },
+        {
+          "row_off": 28,
+          "col_off": 3,
+          "height": 2,
+          "width": 29,
+          "pixels": 58
+        }
+      ],
+      "pixels_read": 754,
+      "outputs": {
+        "data": "with-hole_data.npy",
+        "mask": "with-hole_mask.npy"
+      }
+    },
+    {
+      "region_id": "partial",
+      "status": "partial",
+      "clipped_by_raster_edge": true,
+      "stats": {
+        "count": 80,
+        "min": 0.0,
+        "max": 5.241470813751221,
+        "mean": 2.652069695107639
+      },
+      "coverage": {
+        "selected_cells": 81,
+        "valid_cells": 80,
+        "fraction": 0.9876543209876543
+      },
+      "window": {
+        "row_off": 0,
+        "col_off": 0,
+        "height": 9,
+        "width": 9
+      },
+      "read_windows": [
+        {
+          "row_off": 0,
+          "col_off": 0,
+          "height": 9,
+          "width": 9,
+          "pixels": 81
+        }
+      ],
+      "pixels_read": 81,
+      "outputs": {
+        "data": "partial_data.npy",
+        "mask": "partial_mask.npy"
+      }
+    },
+    {
+      "region_id": "outside",
+      "status": "out_of_bounds",
+      "clipped_by_raster_edge": true,
+      "stats": null,
+      "coverage": {
+        "selected_cells": 0,
+        "valid_cells": 0,
+        "fraction": 0.0
+      },
+      "window": null,
+      "read_windows": [],
+      "pixels_read": 0,
+      "outputs": null
+    }
+  ]
+}
