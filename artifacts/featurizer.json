@@ -1,0 +1,109 @@
+{
+  "artifact_version": 1,
+  "categorical": {
+    "code_null": 0,
+    "code_unknown": 1,
+    "codes": {
+      "": 2,
+      "__UNKNOWN__": 3,
+      "store": 4,
+      "web": 5
+    },
+    "field": "channel",
+    "vocab": [
+      "",
+      "__UNKNOWN__",
+      "store",
+      "web"
+    ],
+    "vocab_index_offset": 2
+  },
+  "digest": "8800d12989b609c09aa7707da585ba38da7fc9d111a6a6497f4711de49eb43ab",
+  "input_schema": {
+    "amount": {
+      "boolean_accepted": false,
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "channel": {
+      "note": "exact-string vocabulary",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "constant": {
+      "boolean_accepted": false,
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "record_id": {
+      "type": "string"
+    }
+  },
+  "kind": "frozen-featurizer-artifact",
+  "numeric_stats": {
+    "amount": {
+      "all_missing": false,
+      "constant": false,
+      "mean": 5.0,
+      "missing_count": 1,
+      "observed_count": 5,
+      "std": 2.8284271247461903
+    },
+    "constant": {
+      "all_missing": false,
+      "constant": true,
+      "mean": 5.0,
+      "missing_count": 1,
+      "observed_count": 5,
+      "std": 0.0
+    }
+  },
+  "output_layout": {
+    "column_order_signature": "0de2cac83239d1ea",
+    "columns": [
+      "amount_scaled",
+      "amount_missing",
+      "constant_scaled",
+      "constant_missing",
+      "channel_missing",
+      "channel_known",
+      "channel_code"
+    ],
+    "dtypes": {
+      "amount_missing": "int8",
+      "amount_scaled": "float64",
+      "channel_code": "int64",
+      "channel_known": "int8",
+      "channel_missing": "int8",
+      "constant_missing": "int8",
+      "constant_scaled": "float64"
+    }
+  },
+  "policies": {
+    "all_missing_column": "fill_zero_scale_zero_indicator_all_ones",
+    "constant_column": "scale_to_zero_and_keep_filled_value",
+    "extra_fields": "reject",
+    "missing_numeric": "fill_train_mean_with_indicator",
+    "null_category": "reserved_code_null",
+    "unseen_category": "reserved_code_unknown"
+  },
+  "spec": {
+    "categorical": "channel",
+    "numeric": [
+      "amount",
+      "constant"
+    ],
+    "record_id": "record_id"
+  },
+  "training": {
+    "row_count": 6,
+    "source": "fixtures/train.jsonl",
+    "std_ddof": 0
+  }
+}

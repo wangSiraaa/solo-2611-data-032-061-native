@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: frozen-featurizer
+Version: 1.0.0
+Summary: Single frozen JSON artifact shared by NumPy batch and HTTP online featurization
+Requires-Python: >=3.11
+Requires-Dist: numpy

@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "frozen-featurizer"
+version = "1.0.0"
+description = "Single frozen JSON artifact shared by NumPy batch and HTTP online featurization"
+requires-python = ">=3.11"
+dependencies = ["numpy"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

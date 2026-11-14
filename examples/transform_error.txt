@@ -1,0 +1,2 @@
+{"error": {"status": 400, "path": "amount", "message": "boolean is not a valid numeric value"}}
+HTTP 400

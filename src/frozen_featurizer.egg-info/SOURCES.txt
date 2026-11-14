@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+src/featurizer/__init__.py
+src/featurizer/artifact.py
+src/featurizer/batch.py
+src/featurizer/contract.py
+src/featurizer/fit.py
+src/featurizer/serve.py
+src/frozen_featurizer.egg-info/PKG-INFO
+src/frozen_featurizer.egg-info/SOURCES.txt
+src/frozen_featurizer.egg-info/dependency_links.txt
+src/frozen_featurizer.egg-info/requires.txt
+src/frozen_featurizer.egg-info/top_level.txt
